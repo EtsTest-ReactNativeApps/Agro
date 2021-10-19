@@ -9,11 +9,11 @@ import { logoutUser } from "../api/auth-api";
 const Dashboard = ({navigation}) => (
   <Background>
     <Logo />
-    <Header>Boian Logout</Header>
+    <Header>Bourbaki Logout</Header>
     <Paragraph>
       Your problems need solution come again and rest your pace.
     </Paragraph>
-    <Button mode="contained" onPress={() => logoutUser(navigation)}>
+    <Button mode="contained" onPress={() => logoutUser()}>
       Logout
     </Button>
     <Button mode="outlined" onPress={() => navigation.goBack()}>

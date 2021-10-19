@@ -11,8 +11,7 @@ import Colors from "../constants/Colors";
 const Background = ({ children }) => (
   <View style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height}}>
     <ImageBackground
-     source={require('../Auth_assets/back_n.jpg')}
-     resizeMode="stretch"
+     resizeMode='cover'
       style={styles.background}
     >
     <KeyboardAvoidingView style={styles.container} behavior="padding">

@@ -133,58 +133,70 @@ const Dashboard = props => {
                     <View style={{marginTop:height*0.13}}>
                       <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>Plants</Text>
                       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
-                        <View style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                      <Pressable 
+                        onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'wheat'})}
+                        style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.13,height:width*0.13}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/wheat.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Wheat</Text>
-                          </View>
-                          <View style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                          </Pressable>
+                          <Pressable 
+                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'rice'})}
+                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.13,height:width*0.13}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/rice.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Rice</Text>
-                          </View>
-                          <View style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                          </Pressable>
+                          <Pressable 
+                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'corn'})}
+                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.13,height:width*0.13}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/corn.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Corn</Text>
-                          </View>
+                          </Pressable>
                       </View>
                       
                       <Text style={{fontFamily:'Sora-Regular',fontSize:16,marginTop:15,color:'#3C3A3A'}}>Leafes</Text>
                       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
-                        <View style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                        <Pressable 
+                        onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'wheat'})}
+                        style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.13,height:width*0.13}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/wheat.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Wheat</Text>
-                          </View>
-                          <View style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                          </Pressable>
+                          <Pressable 
+                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'rice'})}
+                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.13,height:width*0.13}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/rice.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Rice</Text>
-                          </View>
-                          <View style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                          </Pressable>
+                          <Pressable 
+                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'corn'})}
+                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.13,height:width*0.13}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/corn.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Corn</Text>
-                          </View>
+                          </Pressable>
                       </View>
                     </View>                  
                 </View>

@@ -5,7 +5,7 @@ import Colors from '../constants/Colors';
 
 const Logo = () => (
   <View style={{width: 140,height: 140,}}>
-  <Image source={require('../Auth_assets/logo.png')} style={styles.image} />
+  {/* <Image source={require('../Auth_assets/logo.png')} style={styles.image} /> */}
   </View>
 );
 

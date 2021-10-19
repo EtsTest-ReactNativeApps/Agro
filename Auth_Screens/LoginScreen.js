@@ -39,17 +39,19 @@ const LoginScreen = ({ navigation }) => {
     if (response.error) {
       setError(response.error);
     }
-
+    
     setLoading(false);
+    
+    
   };
 
   return (
     <Background>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
-      {/* <Logo />
+      {/* <Logo /> */}
 
-      <Header>Welcome back.</Header> */}
+      <Header>Welcome back.</Header>
 
       <TextInput
         label="Email"
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     marginTop: 4
   },
   label: {
-    color: theme.colors.primary
+    color: '#313131'
   },
   link: {
     fontWeight: "bold",

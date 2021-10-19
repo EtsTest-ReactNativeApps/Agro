@@ -10,8 +10,8 @@ import {View,Pressable,Text} from 'react-native'
 const HomeScreen = ({ navigation }) => (
   <Background>
     {/* <Logo /> */}
-    <Header>Boian Login</Header>
-    <Button mode="contained" onPress={() => navigation.navigate("ImagePicker")}>
+    <Header>Pampas Login</Header>
+    <Button mode="contained" onPress={() => navigation.navigate("LoginScreen")}>
       Login
     </Button>
     <Button

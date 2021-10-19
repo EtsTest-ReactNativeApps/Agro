@@ -5,7 +5,7 @@ import { theme } from "../Auth_Core/theme";
 
 const Button = ({ mode, style, children, ...props }) => (
   <PaperButton
-    style={styles.button}
+    style={{...styles.button,backgroundColor:mode === 'outlined'?null:'#008AF5'}}
     mode={mode}
     {...props}
   >

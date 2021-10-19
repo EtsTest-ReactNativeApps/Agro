@@ -47,7 +47,9 @@ const RegisterScreen = ({ navigation }) => {
     if (response.error) {
       setError(response.error);
     }
-
+    if (!response){
+      navigation.navigate('LoginScreen');
+    }
     setLoading(false);
   };
 
@@ -55,7 +57,7 @@ const RegisterScreen = ({ navigation }) => {
     <Background>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
-      <Logo />
+      {/* <Logo /> */}
 
       <Header>Create Account</Header>
 
@@ -115,7 +117,7 @@ const RegisterScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   label: {
-    color: theme.colors.secondary
+    color: '#313131'
   },
   button: {
     marginTop: 24
