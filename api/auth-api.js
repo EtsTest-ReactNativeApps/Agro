@@ -1,7 +1,15 @@
 import auth from '@react-native-firebase/auth'
+import { ToastAndroid } from 'react-native';
 
-export const logoutUser = () => {
-  auth().signOut();
+export const logoutUser = async (navigation) => {
+  auth().signOut()
+  .then(res=>navigation.navigate('HomeScreen'))
+  .catch(err=>{
+    console.log(err)
+    ToastAndroid.show('Error in fetch',ToastAndroid.LONG)
+  })
+  
+  return {}
 };
 
 export const signInUser = async ({ name, email, password }) => {

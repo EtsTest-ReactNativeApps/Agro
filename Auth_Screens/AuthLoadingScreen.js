@@ -10,6 +10,7 @@ import firebase from '@react-native-firebase/app'
 
 // Initialize Firebase
 
+
 const AuthLoadingScreen = ({ navigation }) => {
   
   auth().onAuthStateChanged(user => {

@@ -13,7 +13,7 @@ const Dashboard = ({navigation}) => (
     <Paragraph>
       Your problems need solution come again and rest your pace.
     </Paragraph>
-    <Button mode="contained" onPress={() => logoutUser()}>
+    <Button mode="contained" onPress={() => logoutUser(navigation)}>
       Logout
     </Button>
     <Button mode="outlined" onPress={() => navigation.goBack()}>

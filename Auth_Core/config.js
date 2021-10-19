@@ -1,6 +1,6 @@
 // Replace with your own firebase config!
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAYSvRV4br0PeXpE2MT1Gyvc6brJOHK-dM",
+  apiKey: "AIzaSyAD3qSLJC186p7qYr1WViuWRg0Ekl--5fU",
   authDomain: "https://hackmaths-cd4b5.firebaseapp.com",
   databaseURL: "https://hackmaths-cd4b5.firebaseio.com",
   projectId: "hackmaths-cd4b5",

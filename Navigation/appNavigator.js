@@ -24,7 +24,7 @@ import Drawer from '../Components/drawer';
 import DetailScreen from '../Screens/DetailScreen';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 
 const AppNavigator=createStackNavigator({
     Dashboard:AppDashboard,
@@ -50,10 +50,10 @@ const AppNavigator=createStackNavigator({
                 </View>
         }},
         logout:{screen:Dashboard,
-            navigationOptions:{
-                drawerIcon:drawerInfo =><View  style={{width:25,height:25}}>
+            navigationOptions:(props)=>{
+                return ({drawerIcon:drawerInfo =><View  style={{width:25,height:25}}>
                  <Image source={require('../constants/exit.png')} style={{width:'100%',height:'100%',tintColor:drawerInfo.tintColor}}
-            onPress={()=>logoutUser} /></View>
+                /></View>})
             }}
     },{drawerWidth:'65%',    
          contentOptions:{
@@ -62,7 +62,8 @@ const AppNavigator=createStackNavigator({
             itemStyle:{justifyContent:'space-between',alignItems:'center',width:'100%'}
         },contentComponent:props=>{
             return (<SafeAreaView>
-                        <Drawer />
+                        <Drawer {...props} />
+                        <DrawerItems {...props} />
                     </SafeAreaView>)
         }
     });
