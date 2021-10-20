@@ -5,7 +5,7 @@ import AppNavigator from './Navigation/appNavigator';
 
 
 const App = () => { 
-  LogBox.ignoreLogs(["Animated:","Warning:"]); 
+  LogBox.ignoreAllLogs(); 
 
   return  <AppNavigator />
 };

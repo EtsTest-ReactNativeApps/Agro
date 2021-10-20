@@ -78,12 +78,14 @@ const Dashboard = props => {
                     </View>
                     <View style={{width:width*0.85,padding:15,justifyContent:'center',flexDirection:'row',alignItems:'center',height:height*0.23,zIndex:0,marginTop:height*0.06,borderRadius:25,backgroundColor:'white',
                   shadowOffset:{width:0,height:3},shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
-                    <View style={{height:height*0.15,width:width*0.85*0.45,justifyContent:'space-between',alignItems:'center'}}>
+                    <Pressable 
+                    onPress={()=>props.navigation.navigate('CropRecommender')}
+                    style={{height:height*0.15,width:width*0.85*0.45,justifyContent:'space-between',alignItems:'center'}}>
                       <View style={{width:width*0.15,height:width*0.15}}>
                         <Image style={{width:'100%',height:'100%'}} source={require('../constants/sprout.png')} />
                       </View>
                       <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#3C3A3A'}}>Press for crop advisor</Text>
-                    </View>
+                    </Pressable>
                     <View style={{width:1,height:height*0.18,backgroundColor:'#E5E5E5',marginHorizontal:width*0.03}}>
                       </View>
                     <View style={{height:height*0.15,width:width*0.85*0.45,alignItems:'center',justifyContent:'space-between'}}>
@@ -208,4 +210,4 @@ const Dashboard = props => {
 
 }
 
-export default Dashboard;
+export default React.memo(Dashboard);

@@ -9,6 +9,7 @@ import ImagePicker, { launchCamera, launchImageLibrary } from "react-native-imag
 import {DoubleCircleLoader, RippleLoader, TextLoader} from 'react-native-indicator'
 import WeatherComponent from "./component/weatherComponent";
 import { RNCamera } from "react-native-camera";
+import ModalComponent from "./ModalComponent";
 
 
 
@@ -16,121 +17,9 @@ const PreDetectScreen = props => {
     const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('name')
-    const requestCameraPermission = async () => {
-        if (Platform.OS === 'android') {
-          try {
-            const granted = await PermissionsAndroid.request(
-              PermissionsAndroid.PERMISSIONS.CAMERA,
-              {
-                title: 'Camera Permission',
-                message: 'App needs camera permission',
-              },
-            );
-            // If CAMERA Permission is granted
-            return granted === PermissionsAndroid.RESULTS.GRANTED;
-          } catch (err) {
-            console.warn(err);
-            return false;
-          }
-        } else return true;
-      };
-    
-      const requestExternalWritePermission = async () => {
-        if (Platform.OS === 'android') {
-          try {
-            const granted = await PermissionsAndroid.request(
-              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-              {
-                title: 'External Storage Write Permission',
-                message: 'App needs write permission',
-              },
-            );
-            // If WRITE_EXTERNAL_STORAGE Permission is granted
-            return granted === PermissionsAndroid.RESULTS.GRANTED;
-          } catch (err) {
-            console.warn(err);
-            alert('Write permission err', err);
-          }
-          return false;
-        } else return true;
-      };
-      
-      const captureImage = async (type) => {
-        let options = {
-          mediaType: type,
-          maxWidth: 300,
-          maxHeight: 550,
-          quality: 1,
-          videoQuality: 'low',
-          durationLimit: 30, //Video max duration in seconds
-          saveToPhotos: true,
-        };
-        let isCameraPermitted = await requestCameraPermission();
-        let isStoragePermitted = await requestExternalWritePermission();
-        if (isCameraPermitted && isStoragePermitted) {
-          launchCamera(options, (response) => {
-            console.log('Response = ', response);
-    
-            if (response.didCancel) {
-              alert('User cancelled camera picker');
-              return;
-            } else if (response.errorCode == 'camera_unavailable') {
-              alert('Camera not available on device');
-              return;
-            } else if (response.errorCode == 'permission') {
-              alert('Permission not satisfied');
-              return;
-            } else if (response.errorCode == 'others') {
-              alert(response.errorMessage);
-              return;
-            }
-            console.log('base64 -> ', response.assets[0].base64);
-            console.log('uri -> ', response.assets[0].uri);
-            console.log('width -> ', response.assets[0].width);
-            console.log('height -> ', response.assets[0].height);
-            console.log('fileSize -> ', response.assets[0].fileSize);
-            console.log('type -> ', response.assets[0].type);
-            console.log('fileName -> ', response.assets[0].fileName);
-            setSource(response);
-          });
-        }
-      };
-    
-      const chooseFile = (type) => {
-        let options = {
-          mediaType: type,
-          maxWidth: 300,
-          maxHeight: 550,
-          quality: 1,
-        };
-        launchImageLibrary(options, (response) => {
-          console.log('Response = ', response);
-    
-          if (response.didCancel) {
-            alert('User cancelled camera picker');
-            return;
-          } else if (response.errorCode == 'camera_unavailable') {
-            alert('Camera not available on device');
-            return;
-          } else if (response.errorCode == 'permission') {
-            alert('Permission not satisfied');
-            return;
-          } else if (response.errorCode == 'others') {
-            alert(response.errorMessage);
-            return;
-          }
-          console.log('base64 -> ', response.base64);
-          console.log('uri -> ', response.uri);
-          console.log('width -> ', response.width);
-          console.log('height -> ', response.height);
-          console.log('fileSize -> ', response.fileSize);
-          console.log('type -> ', response.type);
-          console.log('fileName -> ', response.fileName);
-          setSource(response);
-        });
-      };
+    const [pressed,setPressed]=useState(false)
     return <SafeAreaView style={{flex:1}}>        
-            <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:10,justifyContent:'flex-start'}}>
+            <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
                     <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
                         justifyContent:'center',
@@ -221,27 +110,35 @@ const PreDetectScreen = props => {
                         overflow:'hidden'}}    >
                     <RNCamera captureAudio={false} style={{width:'100%',height:height*.3}} />
                     </View>
-                    <Pressable android_ripple={{color:'grey'}} style={{
+                    <View style={{
+                        overflow:'hidden',
                         width:width*0.95,
-                        height:height*0.07,
-                        marginTop:height*0.02,
-                        borderRadius:100,
-                        elevation:3,
-                        padding:15,
-                        justifyContent:'center',
-                        alignItems:'center',
-                        backgroundColor:'#8CC63E',
-                        shadowColor:'black',
-                        shadowOffset:{width:0,height:4},
-                        shadowOpacity:0.4,
-                        shadowRadius:4}}>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'white'}}>
-                            Detect
-                            </Text>
-                    </Pressable>   
-                </View>                
+                        height:height*0.05,
+                        borderRadius:50,
+                        marginTop:height*0.02}}>
+                      <Pressable
+                      onPress={()=>setPressed(true)}
+                      android_ripple={{color:'grey'}} style={{
+                        overflow:'hidden',
+                          width:'100%',
+                          height:'100%',                          
+                          elevation:3,
+                          justifyContent:'center',
+                          alignItems:'center',
+                          backgroundColor:'#8CC63E',
+                          shadowColor:'black',
+                          shadowOffset:{width:0,height:4},
+                          shadowOpacity:0.4,
+                          shadowRadius:4}}>
+                              <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'white'}}>
+                              Detect
+                              </Text>
+                      </Pressable>
+                    </View>   
+                </View> 
+                {pressed?<ModalComponent {...props} />:null}               
             </SafeAreaView>
 
 }
 
-export default PreDetectScreen;
+export default React.memo(PreDetectScreen);

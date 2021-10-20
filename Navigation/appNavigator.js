@@ -25,11 +25,13 @@ import DetailScreen from '../Screens/DetailScreen';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import CropRecommender from '../Screens/CropRecommender';
 
 const AppNavigator=createStackNavigator({
     Dashboard:AppDashboard,
     PreDetectScreen:PreDetectScreen,
-    DetailScreen:DetailScreen
+    DetailScreen:DetailScreen,
+    CropRecommender:CropRecommender
     },{headerMode:'none'});
     const AuthNavigator=createStackNavigator({
         HomeScreen,

@@ -22,4 +22,4 @@ const WeatherComponent = props => {
             </View>
 }
 
-export default WeatherComponent
+export default React.memo(WeatherComponent)
