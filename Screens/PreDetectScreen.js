@@ -136,7 +136,7 @@ const PreDetectScreen = props => {
                       </Pressable>
                     </View>   
                 </View> 
-                {pressed?<ModalComponent {...props} />:null}               
+                {pressed?<ModalComponent setPressed={setPressed} {...props} />:null}               
             </SafeAreaView>
 
 }

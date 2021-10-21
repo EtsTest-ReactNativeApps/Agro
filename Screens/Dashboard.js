@@ -204,7 +204,7 @@ const Dashboard = props => {
                     </View>                  
                 </View>
               </View>
-              <WeatherModal />                         
+              {/* <WeatherModal {...props} />                          */}
             </SafeAreaView>
               
                 )

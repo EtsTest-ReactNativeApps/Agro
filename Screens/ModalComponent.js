@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Pressable,PermissionsAndroid,Text, View, Platform, Dimensions } from "react-native";
+import React, { useCallback, useState } from "react";
+import { Pressable,PermissionsAndroid,Text, View, Platform, Dimensions, ToastAndroid } from "react-native";
 import { RippleLoader } from "react-native-indicator";
 import { Modal } from "react-native-paper";
 
 import ImagePicker, { launchCamera, launchImageLibrary } from "react-native-image-picker"
 
 const ModalComponent = props => {
-
+    const [detecting,setDetecting]=useState(false)
     const [modal,setModal]=useState(true)
     const [check,setCheck]=useState(false)
     const width=Dimensions.get('screen').width
@@ -87,7 +87,9 @@ const ModalComponent = props => {
             console.log('fileSize -> ', response.assets[0].fileSize);
             console.log('type -> ', response.assets[0].type);
             console.log('fileName -> ', response.assets[0].fileName);
-            props.navigation.navigate('DetailScreen',{uri:response.assets[0].uri})
+            // props.navigation.navigate('DetailScreen',{uri:response.assets[0].uri})
+            setDetecting(true)
+            detectImage(response.assets[0].uri)
             return {}
           });
         }
@@ -116,17 +118,53 @@ const ModalComponent = props => {
             alert(response.errorMessage);
             return;
           }
-          console.log('base64 -> ', response.base64);
-          console.log('uri -> ', response.uri);
-          console.log('width -> ', response.width);
-          console.log('height -> ', response.height);
-          console.log('fileSize -> ', response.fileSize);
-          console.log('type -> ', response.type);
-          console.log('fileName -> ', response.fileName);
-          props.navigation.navigate('DetailScreen',{uri:response.assets[0].uri})
+          console.log('base64 -> ', response.assets[0].base64);
+            console.log('uri -> ', response.assets[0].uri);
+            console.log('width -> ', response.assets[0].width);
+            console.log('height -> ', response.assets[0].height);
+            console.log('fileSize -> ', response.assets[0].fileSize);
+            console.log('type -> ', response.assets[0].type);
+            console.log('fileName -> ', response.assets[0].fileName);
+            // props.navigation.navigate('DetailScreen',{uri:response.assets[0].uri})
+            setDetecting(true);
+            detectImage(response.assets[0])
           return {}
         });
       };
+    const detectImage = useCallback((image)=>{
+      try{
+        var formdata = new FormData();
+        const data={
+          uri:image.uri,
+          type:image.type,
+          name:image.fileName
+        }
+        formdata.append("image", data);
+        var requestOptions = {
+          method: 'POST',
+          body: formdata,
+          headers:{
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data"
+          },
+          redirect: 'follow'
+        };
+
+        fetch("https://pytorch-annual2.herokuapp.com/getRice", requestOptions)
+          .then(response => response.json())
+          .then(res=>{
+            
+            console.log(res);
+            props.navigation.navigate('DetailScreen',{uri:image.uri,detect:res.result})
+            props.setPressed(false)
+            return {}
+          })
+        }catch(err){
+        console.log('error',err)
+        ToastAndroid.show('Error in detecting .')
+      }
+
+    })
     return <Modal
             style={{justifyContent:'center',alignItems:'center'}}
             contentContainerStyle={{width:width*0.9,borderRadius:20,height:height*0.25,backgroundColor:'white',justifyContent:'center',alignItems:'center'}}
@@ -134,12 +172,12 @@ const ModalComponent = props => {
                 transparent={true}
                 visible={modal} 
                 >
-            <View style={{width:width*0.9,height:height*0.25,justifyContent:'flex-start',alignItems:'center'}}>
-                <Pressable onPress={()=>{setModal(false);captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
+            {!detecting?<View style={{width:width*0.9,height:height*0.25,justifyContent:'flex-start',alignItems:'center'}}>
+                <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Launch Camera</Text>
                 </Pressable>
-                <Pressable onPress={()=>{setModal(false);chooseFile('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
+                <Pressable onPress={()=>{chooseFile('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Upload from Gallery</Text>
                 </Pressable>
@@ -147,7 +185,21 @@ const ModalComponent = props => {
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#313131'}}>Cancel</Text>
                 </Pressable>
-            </View>
+               </View>:<View style={{
+                        width:width*0.9,
+                        height:height*0.25,
+                        justifyContent:'center',
+                        alignItems:'center'}}>
+
+                        <RippleLoader  
+                        strokeWidth={4} 
+                        size={Dimensions.get('screen').width*.13} color={'#8CC63E'} />
+
+                        <Text style={{marginTop:15,fontFamily:'Sora-Regular',color:'#3C3A3A'}}>
+                            Detecting, please wait ...
+                        </Text>
+                        
+                    </View>}
         </Modal>
 }
 

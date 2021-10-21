@@ -17,6 +17,7 @@ const DetailScreen = props =>{
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('name')
     const uri=props.navigation.getParam('uri')
+    const detect=props.navigation.getParam('detect')
     const [pressed,setPressed]=useState(false)
     return <SafeAreaView style={{flex:1}}>        
             <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
@@ -70,13 +71,13 @@ const DetailScreen = props =>{
                            padding:10,
                            backgroundColor:'#E89F9F',
                            justifyContent:'center',
-                           alignItems:'flex-start',
+                           alignItems:'center',
                            shadowColor:'black',
                            shadowOffset:{width:0,height:4},
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
-                               <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#B00000'}}>
-                                 {name} detection
+                               <Text style={{fontFamily:'Sora-Regular',letterSpacing:2,fontSize:16,color:'#B00000'}}>
+                                 {detect} detection
                                 </Text>
                         </View>                        
                     </View>                      
