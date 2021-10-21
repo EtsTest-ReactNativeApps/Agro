@@ -1,6 +1,7 @@
 import ButtonP from "../Auth_Components/Button";
 import React,{  useEffect, useRef, useState } from "react";
 import {View, Button,Pressable,Image,Text,Modal, StyleSheet, TouchableNativeFeedback, ToastAndroid, SafeAreaView, ActivityIndicator, Alert, Dimensions, ImageBackground,} from "react-native"
+import WeatherModal from "./WeatherModal";
 
 const Dashboard = props => {
     
@@ -202,7 +203,8 @@ const Dashboard = props => {
                       </View>
                     </View>                  
                 </View>
-              </View>                         
+              </View>
+              <WeatherModal />                         
             </SafeAreaView>
               
                 )
