@@ -11,6 +11,9 @@ const ModalComponent = props => {
     const [check,setCheck]=useState(false)
     const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
+    const url = props.name === 'rice' ?"https://pytorch-annual2.herokuapp.com/getRice" : 
+    props.name === 'wheat' ? 'https://pytorch-annual.herokuapp.com/getWheatDisease' : 
+    props.name === 'corn' ?'https://pytorch-annual3.herokuapp.com/getCorn' : null
     const [continuePressed,setContinuePressed]=useState(false)
     const requestCameraPermission = async () => {
         if (Platform.OS === 'android') {
@@ -150,14 +153,16 @@ const ModalComponent = props => {
           redirect: 'follow'
         };
 
-        fetch("https://pytorch-annual2.herokuapp.com/getRice", requestOptions)
+        fetch(url, requestOptions)
           .then(response => response.json())
-          .then(res=>{
-            
-            console.log(res);
-            props.navigation.navigate('DetailScreen',{uri:image.uri,detect:res.result})
-            props.setPressed(false)
-            return {}
+          .then(res=>{            
+              console.log(res);
+              props.navigation.navigate('DetailScreen',{
+              uri:image.uri,
+              detect:res.result,
+              name:props.name})
+              props.setPressed(false)
+              return {}
           })
         }catch(err){
         console.log('error',err)

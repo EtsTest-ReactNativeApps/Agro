@@ -57,7 +57,11 @@ const DetailScreen = props =>{
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
                             <View style={{width:height*0.07,height:height*0.07}}>
-                                <Image source={require('../constants/wheat.png')}  
+                            <Image source={name === 'wheat'?require("../constants/wheat.png"):
+                                name === 'rice' ? require("../constants/rice.png") :
+                                name === 'corn' ? require("../constants/corn.png") : 
+                                name === 'leaf' ? require("../constants/leaf.png") :
+                                name === 'fruit' ? require("../constants/fruit.png") :null } 
                                 style={{width:'100%',height:'100%'}}/>
                             </View>
                     </View>     

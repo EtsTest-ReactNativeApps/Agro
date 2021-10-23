@@ -27,14 +27,18 @@ const WeatherModal = props => {
                     
                 })
             
-            if (positionString){
+            
             fetch("http://api.weatherstack.com/current?access_key=9746cc237198a9abfa26421f854baea5&query=26.4870674,80.3491599", requestOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+                props.setWind(result.current.wind_speed)
+                props.setTemp(result.current.temperature)
+                props.setRain(result.current.precip)
+                props.setData({...result})
                 setLoading(false)
             })
-            }                                 
+                                            
              
         }catch(err){
             setLoading(false)

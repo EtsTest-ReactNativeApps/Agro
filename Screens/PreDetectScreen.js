@@ -17,6 +17,7 @@ const PreDetectScreen = props => {
     const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('name')
+    const data=props.navigation.getParam('data')
     const [pressed,setPressed]=useState(false)
     return <SafeAreaView style={{flex:1}}>        
             <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
@@ -69,7 +70,11 @@ const PreDetectScreen = props => {
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
                             <View style={{width:height*0.07,height:height*0.07}}>
-                                <Image source={require('../constants/wheat.png')}  
+                                <Image source={name === 'wheat'?require("../constants/wheat.png"):
+                                name === 'rice' ? require("../constants/rice.png") :
+                                name === 'corn' ? require("../constants/corn.png") :
+                                name === 'leaf' ? require("../constants/leaf.png") :
+                                name === 'fruit' ? require("../constants/fruit.png") :null }  
                                 style={{width:'100%',height:'100%'}}/>
                             </View>
                     </View>       
@@ -87,14 +92,14 @@ const PreDetectScreen = props => {
                     shadowOpacity:0.4,
                     shadowRadius:4}}>
                         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                            <WeatherComponent item={'Rain'} value={'10 mm'} />
-                            <WeatherComponent item={'Wind'} value={'180 mh'} />
+                            <WeatherComponent item={'Rain'} value={data.current.precip + '%'} />
+                            <WeatherComponent item={'Wind'} value={data.current.wind_speed + 'mph'} />
                         </View>
                         <View style={{
                             flexDirection:'row',
                             justifyContent:'space-between',
                             marginTop:height*0.04}}>
-                            <WeatherComponent item={'Humidity'} value={'85 %'} />
+                            <WeatherComponent item={'Humidity'} value={data.current.humidity +'%'} />
                             <WeatherComponent item={'Ph'} value={'8'} />
                         </View>
                     </View>
@@ -136,7 +141,11 @@ const PreDetectScreen = props => {
                       </Pressable>
                     </View>   
                 </View> 
-                {pressed?<ModalComponent setPressed={setPressed} {...props} />:null}               
+                {pressed?
+                <ModalComponent 
+                name={name} 
+                setPressed={setPressed} 
+                {...props} />:null}               
             </SafeAreaView>
 
 }
