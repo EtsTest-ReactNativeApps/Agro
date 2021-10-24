@@ -13,7 +13,7 @@ const AuthLoadingScreen = ({ navigation }) => {
       navigation.navigate("ImagePicker",{user:user});
     } else {
       // User is not logged in
-      navigation.navigate("HomeScreen");
+      navigation.navigate("Welcome");
     }
   });
   return (

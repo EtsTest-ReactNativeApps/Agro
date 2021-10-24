@@ -73,7 +73,7 @@ const DetailScreen = props =>{
                            marginTop:25,
                            elevation:1,
                            padding:10,
-                           backgroundColor:'#E89F9F',
+                           backgroundColor:detect.toLowerCase().contains('healthy')?'':'#E89F9F',
                            justifyContent:'center',
                            alignItems:'center',
                            shadowColor:'black',

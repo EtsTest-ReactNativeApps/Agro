@@ -13,7 +13,10 @@ const ModalComponent = props => {
     const height=Dimensions.get('screen').height
     const url = props.name === 'rice' ?"https://pytorch-annual2.herokuapp.com/getRice" : 
     props.name === 'wheat' ? 'https://pytorch-annual.herokuapp.com/getWheatDisease' : 
-    props.name === 'corn' ?'https://pytorch-annual3.herokuapp.com/getCorn' : null
+    props.name === 'corn' ?'https://pytorch-annual3.herokuapp.com/getCorn' : 
+    props.name === 'leaf' ? 'https://pytorch-annual.herokuapp.com/getLeafDisease' :
+    props.name === 'fruit' ? 'https://pytorch-annual.herokuapp.com/getLeafDisease' : null
+
     const [continuePressed,setContinuePressed]=useState(false)
     const requestCameraPermission = async () => {
         if (Platform.OS === 'android') {

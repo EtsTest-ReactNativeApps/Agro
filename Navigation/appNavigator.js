@@ -26,7 +26,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import CropRecommender from '../Screens/CropRecommender';
-
+import Welcome from '../Screens/Welcome';
 const AppNavigator=createStackNavigator({
     Dashboard:AppDashboard,
     PreDetectScreen:PreDetectScreen,
@@ -39,7 +39,8 @@ const AppNavigator=createStackNavigator({
         RegisterScreen,
         ForgotPasswordScreen,
         Dashboard,
-        AuthLoadingScreen
+        AuthLoadingScreen,
+        Welcome
     },{
         initialRouteName:'AuthLoadingScreen',
         headerMode:'none'

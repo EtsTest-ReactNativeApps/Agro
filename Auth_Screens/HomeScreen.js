@@ -10,7 +10,7 @@ import {View,Pressable,Text} from 'react-native'
 const HomeScreen = ({ navigation }) => (
   <Background>
     {/* <Logo /> */}
-    <Header>Pampas Login</Header>
+    <Text style={{color:theme.colors.primary,fontSize:25,fontWeight:'bold'}} >Pampas Login</Text>
     <Button mode="contained" onPress={() => navigation.navigate("LoginScreen")}>
       Login
     </Button>
