@@ -7,6 +7,7 @@ import ImagePicker, { launchCamera, launchImageLibrary } from "react-native-imag
 
 const ModalComponent = props => {
     const [detecting,setDetecting]=useState(false)
+    const [invalid,setInvalid] = useState(false)
     const [modal,setModal]=useState(true)
     const [check,setCheck]=useState(false)
     const width=Dimensions.get('screen').width
@@ -140,12 +141,15 @@ const ModalComponent = props => {
     const detectImage = useCallback((image)=>{
       try{
         var formdata = new FormData();
+        var value = props.name === 'wheat' || props.name === 'rice' || props.name === 'corn' || 
+                    props.name === 'leaf' ? 'leaf' : props.name === 'fruit' ? 'fruit' : null
         const data={
           uri:image.uri,
           type:image.type,
           name:image.fileName
         }
         formdata.append("image", data);
+        formdata.append("value", value);
         var requestOptions = {
           method: 'POST',
           body: formdata,
@@ -156,13 +160,23 @@ const ModalComponent = props => {
           redirect: 'follow'
         };
 
-        fetch(url, requestOptions)
+        fetch('https://pytorch-annual.herokuapp.com/getPlantNet', requestOptions)
           .then(response => response.json())
-          .then(res=>{            
-              console.log(res);
+          .then(res=>{
+              if  (res.result === 'Invalid Image'){
+                setDetecting(false)
+                props.setPressed(false)
+                alert(`This Image is not of a ${props.name}`)
+                return {}
+              }else{
+                return fetch(url, requestOptions)
+              }})
+            .then(res=>res.json())
+            .then(data=>{            
+              console.log(data);
               props.navigation.navigate('DetailScreen',{
               uri:image.uri,
-              detect:res.result,
+              detect:data.result,
               name:props.name})
               props.setPressed(false)
               return {}

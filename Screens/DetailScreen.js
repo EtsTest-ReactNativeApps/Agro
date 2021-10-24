@@ -65,22 +65,23 @@ const DetailScreen = props =>{
                                 style={{width:'100%',height:'100%'}}/>
                             </View>
                     </View>     
-                   <View style={{width:width*0.45,height:'100%',justifyContent:'space-between'}}>
+                   <View style={{height:'100%', marginRight:10}}>
                        <View style={{
-                           width:width*0.45,
                            height:height*0.056,
                            borderRadius:15,
+                          
                            marginTop:25,
                            elevation:1,
-                           padding:10,
-                           backgroundColor:detect.toLowerCase().contains('healthy')?'':'#E89F9F',
+                           paddingHorizontal:15,
+                           backgroundColor:detect.toLowerCase().includes('healthy')?'#C7F0AF':'#E89F9F',
                            justifyContent:'center',
                            alignItems:'center',
                            shadowColor:'black',
                            shadowOffset:{width:0,height:4},
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
-                               <Text style={{fontFamily:'Sora-Regular',letterSpacing:2,fontSize:16,color:'#B00000'}}>
+                               <Text style={{fontFamily:'Sora-Regular',letterSpacing:1.3,fontSize:16,
+                               color:detect.toLowerCase().includes('healthy')?'#2A8B31':'#B00000'}}>
                                  {detect} detection
                                 </Text>
                         </View>                        
