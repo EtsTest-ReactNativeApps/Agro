@@ -10,7 +10,7 @@ import { NavigationEvents } from 'react-navigation';
 const Welcome = ({ navigation }) => {
 
     const [ activeState, setActiveState ] = useState({
-        title: "Kirana Premier League",
+        title: "Agro App",
         description: "Exclusively for Agriculture and Farming",
         id: 1,
         src: require('../constants/agricultural.png')

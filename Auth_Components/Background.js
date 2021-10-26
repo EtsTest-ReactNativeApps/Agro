@@ -9,7 +9,7 @@ import {
 import Colors from "../constants/Colors";
 
 const Background = ({ children }) => (
-  <View style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height}}>
+  <View style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height,backgroundColor:'white'}}>
     <ImageBackground
      resizeMode='cover'
       style={styles.background}
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     maxWidth: 340,
     alignSelf: "center",
     alignItems: "center",
-    justifyContent: "center"
+    
   }
 });
 

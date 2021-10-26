@@ -1,15 +1,15 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Button as PaperButton } from "react-native-paper";
 import { theme } from "../Auth_Core/theme";
 
 const Button = ({ mode, style, children, ...props }) => (
-  <PaperButton
-    style={{...styles.button,backgroundColor:mode === 'outlined'?null:'#008AF5'}}
+  <PaperButton 
+    style={{...styles.button,backgroundColor:mode === 'outlined'?null:'#8CC63E'}}
     mode={mode}
     {...props}
   >
-    {children}
+    <Text style={{...styles.text,color:mode === 'outlined'?'#5E5E5E':'white'}}>{children}</Text>
   </PaperButton>
 );
 

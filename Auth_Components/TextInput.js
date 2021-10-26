@@ -6,8 +6,8 @@ import { theme } from "../Auth_Core/theme";
 const TextInput = ({ errorText, ...props }) => (
   <View style={styles.container}>
     <Input
-      style={styles.input}
-      selectionColor={theme.colors.primary}
+      style={{...styles.input}}
+      selectionColor={'#8CC63E'}
       underlineColor="transparent"
       mode="outlined"
       {...props}

@@ -1,13 +1,15 @@
 import ButtonP from "../Auth_Components/Button";
 import React,{  useEffect, useRef, useState } from "react";
-import {View, Button,Pressable,Image,Text,Modal, StyleSheet, TouchableNativeFeedback, ToastAndroid, SafeAreaView, ActivityIndicator, Alert, Dimensions, ImageBackground,} from "react-native"
+import {View, Button,Pressable,Image,Text,Modal, StyleSheet, TouchableNativeFeedback, ToastAndroid, SafeAreaView, ActivityIndicator, Alert, Dimensions, ImageBackground, ScrollView,} from "react-native"
 import WeatherModal from "./WeatherModal";
+import SlidingModal from "./component/SlidingModal";
 
 const Dashboard = props => {
     
     const [wind,setWind]=useState('')
     const [temp,setTemp]=useState('')
     const [rain,setRain]=useState('')
+    const [modalVisible,setModalVisible]=useState(false)
     const [data,setData]=useState(null)
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
@@ -15,8 +17,8 @@ const Dashboard = props => {
               <View style={{width:width,height:height,backgroundColor:'#8CC63E'}}>
                 <View style={{width:width,height:width*0.78*(293/414),alignItems:'center'}}>
                   <ImageBackground style={{width:'100%',height:'100%',alignItems:'center',justifyContent:'space-between'}} source={require('../constants/backg.png')}>
-                    <View style={{width:width*.95,height:height*0.08,padding:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
-                      <Pressable onPress={()=>props.navigation.toggleDrawer()} style={{width:height*0.05,height:height*0.05}}>
+                    <View style={{width:width,height:height*0.08,padding:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
+                      <Pressable onPress={()=>props.navigation.toggleDrawer()} style={{width:height*0.04,height:height*0.04}}>
                         <Image style={{width:'100%',height:'100%'}} source={require('../constants/menu.png')} />
                       </Pressable>
                       <Text style={{fontFamily:'Sora-Regular',fontWeight:'700',color:'white',fontSize:17}}>
@@ -27,7 +29,10 @@ const Dashboard = props => {
                     <View style={{width:width*0.85,padding:15,justifyContent:'center',flexDirection:'row',alignItems:'center',height:height*0.23,zIndex:0,marginTop:height*0.06,borderRadius:25,backgroundColor:'white',
                   shadowOffset:{width:0,height:3},shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                     <Pressable 
-                    onPress={()=>props.navigation.navigate('CropRecommender')}
+                    onPress={()=>{
+                      // props.navigation.navigate('CropRecommender')
+                      setModalVisible(true)
+                    }}
                     style={{height:height*0.15,width:width*0.85*0.45,justifyContent:'space-between',alignItems:'center'}}>
                       <View style={{width:width*0.15,height:width*0.15}}>
                         <Image style={{width:'100%',height:'100%'}} source={require('../constants/sprout.png')} />
@@ -76,16 +81,20 @@ const Dashboard = props => {
                   </ImageBackground>
                   
                 </View>
+                
                 <View style={{
                   width:width,
-                  height:height*0.7,
-                  zIndex:-1,
+                  zIndex:0,
+                  height:height*.75,
                   backgroundColor:'#FCFCFC',
                   paddingHorizontal:15,
                   borderTopLeftRadius:25,
                   borderTopRightRadius:25}}>
-                    <View style={{marginTop:height*0.13}}>
-                      <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>Plants</Text>
+                    <View style={{marginTop:height*0.11}}>
+                      <Text style={{fontFamily:'Sora-Bold',marginBottom:25,marginTop:10,textAlign:'left',fontSize:18,color:'#544F4F'}}>
+                        Detect Disease
+                      </Text>
+                      <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#615E5E'}}>Plants</Text>
                       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
                       <Pressable 
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'wheat',data:data})}
@@ -95,7 +104,7 @@ const Dashboard = props => {
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/wheat.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Wheat</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Wheat</Text>
                           </Pressable>
                           <Pressable 
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'rice',data:data})}
@@ -105,7 +114,7 @@ const Dashboard = props => {
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/rice.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Rice</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Rice</Text>
                           </Pressable>
                           <Pressable 
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'corn',data:data})}
@@ -115,11 +124,11 @@ const Dashboard = props => {
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/corn.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Corn</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Corn</Text>
                           </Pressable>
                       </View>
                       
-                      <Text style={{fontFamily:'Sora-Regular',fontSize:16,marginTop:15,color:'#3C3A3A'}}>Leafes {'&'} Fruits</Text>
+                      <Text style={{fontFamily:'Sora-Regular',fontSize:14,marginTop:15,color:'#615E5E'}}>Leafes {'&'} Fruits</Text>
                       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
                         <Pressable 
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'leaf',data:data})}
@@ -129,7 +138,7 @@ const Dashboard = props => {
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/leaf.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Leafes</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Leafes</Text>
                           </Pressable>
                           <Pressable 
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'fruit',data:data})}
@@ -139,28 +148,24 @@ const Dashboard = props => {
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/fruit.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Fruits</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Fruits</Text>
                           </Pressable>
-                          {/* <Pressable 
-                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'corn',data:data})}
-                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
-                          backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                          shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
-                          <View style={{width:width*0.14,height:width*0.14}}>
-                              <Image style={{width:'100%',height:'100%'}} source={require('../constants/corn.png')} />
-                            </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Corn</Text>
-                          </Pressable> */}
+                          
                       </View>
                     </View>                  
                 </View>
               </View>
-              <WeatherModal 
+              {/* <WeatherModal 
               setWind={setWind} 
               setTemp={setTemp} 
               setRain={setRain}
               setData={setData} 
-              {...props} />                          
+              {...props} /> */}
+              <SlidingModal 
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
+              {...props}   /> 
+                                    
             </SafeAreaView>
               
                 )

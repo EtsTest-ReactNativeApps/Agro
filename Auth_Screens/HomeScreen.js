@@ -5,22 +5,26 @@ import Header from "../Auth_Components/Header";
 import Button from "../Auth_Components/Button";
 import Paragraph from "../Auth_Components/Paragraph";
 import { theme } from "../Auth_Core/theme";
-import {View,Pressable,Text} from 'react-native'
+import {View,Pressable,Text, Dimensions} from 'react-native'
 
 const HomeScreen = ({ navigation }) => (
   <Background>
-    {/* <Logo /> */}
-    <Text style={{color:theme.colors.primary,fontSize:25,fontWeight:'bold'}} >Pampas Login</Text>
-    <Button mode="contained" onPress={() => navigation.navigate("LoginScreen")}>
-      Login
-    </Button>
-    <Button
-      mode="outlined"
-      style={{borderColor:theme.colors.primary,borderWidth:2}}
-      onPress={()=>setTimeout(() => navigation.navigate("RegisterScreen"),0)}
-    >
-      Sign Up
-    </Button>
+    <View style={{marginTop:Dimensions.get('screen').height*0.1}}>
+      <Logo />
+    </View>
+    {/* <Text style={{color:theme.colors.primary,fontSize:25,fontWeight:'bold'}} >Pampas Login</Text> */}
+    <View style={{marginTop:Dimensions.get('screen').height*0.05,width:'100%'}}>
+      <Button mode="contained" onPress={() => navigation.navigate("LoginScreen")}>
+        Login
+      </Button>
+      <Button
+        mode="outlined"
+        style={{borderColor:theme.colors.primary,borderWidth:5}}
+        onPress={()=>setTimeout(() => navigation.navigate("RegisterScreen"),0)}
+      >
+        Sign Up
+      </Button>
+    </View>
     {/* <View style={{width:'100%',borderRadius:50,borderColor:theme.colors.primary,
     borderWidth:2,
     height:40,justifyContent:'center',alignItems:'center'}}>
