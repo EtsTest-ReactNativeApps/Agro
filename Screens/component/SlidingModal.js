@@ -150,7 +150,11 @@ const SlidingModal = props => {
                               onPress={async ()=>{
                                 
                                 await props.setModalVisible(false)
-                                props.navigation.navigate('CropRecommender');
+                                if (statePressed === 'SD'){
+                                  props.navigation.navigate('CropDetailScreen',{soilType:soil})
+                                }else{
+                                  props.navigation.navigate('CropRecommender');
+                                }
                                 return {}
                                 }}
                               android_ripple={{color:'grey'}} style={{

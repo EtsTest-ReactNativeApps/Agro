@@ -155,12 +155,12 @@ const Dashboard = props => {
                     </View>                  
                 </View>
               </View>
-              {/* <WeatherModal 
+              <WeatherModal 
               setWind={setWind} 
               setTemp={setTemp} 
               setRain={setRain}
               setData={setData} 
-              {...props} /> */}
+              {...props} />
               <SlidingModal 
               modalVisible={modalVisible}
               setModalVisible={setModalVisible}
