@@ -28,12 +28,14 @@ import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import CropRecommender from '../Screens/CropRecommender';
 import Welcome from '../Screens/Welcome';
 import CropDetailScreen from '../Screens/CropDetailScreen';
+import CropDetailScreenViaImage from '../Screens/CropDetailScreenViaImage';
 const AppNavigator=createStackNavigator({
     Dashboard:AppDashboard,
     PreDetectScreen:PreDetectScreen,
     DetailScreen:DetailScreen,
     CropRecommender:CropRecommender,
-    CropDetailScreen:CropDetailScreen
+    CropDetailScreen:CropDetailScreen,
+    CropDetailScreenViaImage:CropDetailScreenViaImage
     },{headerMode:'none'});
     const AuthNavigator=createStackNavigator({
         HomeScreen,

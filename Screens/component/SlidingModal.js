@@ -156,7 +156,7 @@ const SlidingModal = props => {
                                     weatherData:props.weatherData
                                   })
                                 }else{
-                                  props.navigation.navigate('CropRecommender');
+                                  props.setSoilModalVisible(true)
                                 }
                                 return {}
                                 }}

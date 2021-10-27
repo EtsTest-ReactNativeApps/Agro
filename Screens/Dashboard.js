@@ -3,6 +3,7 @@ import React,{  useEffect, useRef, useState } from "react";
 import {View, Button,Pressable,Image,Text,Modal, StyleSheet, TouchableNativeFeedback, ToastAndroid, SafeAreaView, ActivityIndicator, Alert, Dimensions, ImageBackground, ScrollView,} from "react-native"
 import WeatherModal from "./WeatherModal";
 import SlidingModal from "./component/SlidingModal";
+import SoilModalComponent from "./SoilModalComponent";
 
 const Dashboard = props => {
     
@@ -10,6 +11,7 @@ const Dashboard = props => {
     const [temp,setTemp]=useState('')
     const [rain,setRain]=useState('')
     const [modalVisible,setModalVisible]=useState(false)
+    const [soilModalVisible,setSoilModalVisible]=useState(false)
     const [data,setData]=useState(null)
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
@@ -164,9 +166,14 @@ const Dashboard = props => {
               <SlidingModal 
               modalVisible={modalVisible}
               setModalVisible={setModalVisible}
+              setSoilModalVisible={setSoilModalVisible}
               weatherData={data}
               {...props}   /> 
-                                    
+              <SoilModalComponent
+              soilModalVisible={soilModalVisible}
+              setSoilModalVisible={setSoilModalVisible}
+              setModalVisible={setModalVisible}
+              {...props} />            
             </SafeAreaView>
               
                 )

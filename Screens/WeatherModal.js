@@ -2,13 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Dimensions, Image, PermissionsAndroid, Pressable, Text, ToastAndroid, View } from "react-native";
 import { Modal } from "react-native-paper";
 import {DoubleCircleLoader, RippleLoader, TextLoader} from 'react-native-indicator'
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-get-location'
 import {NavigationEvents} from 'react-navigation'
 const WeatherModal = props => {
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height
     const [loading,setLoading]=useState(true)
-    const [positionString,setPositionString] = useState('')
     const [err,setErr] = useState(null)
 
     const fetchData = useCallback((GPS)=>{
@@ -35,32 +34,31 @@ const WeatherModal = props => {
     })
 
     const fetchWeatherData = useCallback(async()=>{
-        try{
-            
-            await Geolocation.getCurrentPosition(pos=>{
-                console.log([pos.coords.latitude,pos.coords.longitude])
-                return fetchData([pos.coords.latitude,pos.coords.longitude])
-                },err=>{
-                    console.log('ERR',err)
-                    setErr(err)
-                    return
-                },{
-                    enableHighAccuracy: true,
-                    timeout: 2000,
-                    maximumAge: 3600000
-                    
-                })
+        try{            
+            Geolocation.getCurrentPosition({
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge:1000
+            })
+            .then(pos=>{
+                console.log([pos.latitude,pos.longitude])
+                return fetchData([pos.latitude,pos.longitude])
+            })
+            .catch(err=>{
+                setErr(err)
+                console.log('error',err)                
+            })
             
         }catch(err){
             setLoading(false)
             console.log('error',err)
             ToastAndroid.show('Error in fetching Weather Stats.')
         }
-        if (err){
-            setLoading(false)
-            console.log('error',err)
-            ToastAndroid.show('Error in fetching geolocation.')
-         } 
+        // if (err){
+        //     setLoading(false)
+        //     console.log('error',err)
+        //     ToastAndroid.show('Error in fetching geolocation.')
+        //  } 
     })
 
     
@@ -79,16 +77,30 @@ const WeatherModal = props => {
                     <View style={{
                         width:width*0.9,
                         height:height*0.25,
-                        justifyContent:'center',
-                        alignItems:'center'}}>
+                        }}>
+                        {!err?<View style={{width:'100%',height:'100%',justifyContent:'center',alignItems:'center'}}>
+                            <RippleLoader  
+                            strokeWidth={4} 
+                            size={Dimensions.get('screen').width*.13} color={'#8CC63E'} />
 
-                        <RippleLoader  
-                        strokeWidth={4} 
-                        size={Dimensions.get('screen').width*.13} color={'#8CC63E'} />
-
-                        <Text style={{marginTop:15,fontFamily:'Sora-Regular',color:'#3C3A3A'}}>
-                            Getting Weather Stats ...
-                        </Text>
+                            <Text style={{marginTop:15,fontFamily:'Sora-Regular',color:'#3C3A3A'}}>
+                                Getting Weather Stats ...
+                            </Text>
+                        </View>:
+                        <View style={{width:'100%',height:'100%',justifyContent:'flex-start',alignItems:'center'}}>
+                            <View style={{width:width*0.12,height:width*0.12,marginVertical:15}}>
+                                <Image source={require('./alert.png')} style={{width:'100%',height:'100%'}} />
+                            
+                            </View>
+                            <View style={{width:'60%',alignItems:'center'}}>
+                                <Text style={{fontSize:16,fontFamily:'Sora-Regular',fontWeight:'200',color:'#3C3A3A'}}>
+                                    Can't able to detect location
+                                </Text>
+                                <Text style={{fontSize:16,marginTop:10,fontFamily:'Sora-Regular',fontWeight:'200',color:'#3C3A3A'}}>
+                                    Please Restart the app.
+                                </Text>
+                            </View>
+                        </View>}
                         <NavigationEvents onWillFocus={fetchWeatherData} />
                     </View>
                 </Modal>
