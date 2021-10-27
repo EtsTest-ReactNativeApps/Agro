@@ -4,6 +4,8 @@ import { Dimensions, Pressable, View } from "react-native";
 import { Modal } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Next from '../constants/next.png'
+import fetchingModal from "./fetchingModal";
+import soilData from "./soilData";
 
 
 
@@ -12,7 +14,28 @@ const CropDetailScreen = props =>{
   const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('soilType')
+    const weatherData = props.navigation.getParam('weatherData')
     const [pressed,setPressed]=useState(false)
+    const [modalVisible,setModalVisible]=useState(false)
+    const fetchData = useCallback(()=>{
+        setModalVisible(true)
+        try{
+            const soilKey=name.split(' ')[0]
+            const soilDataObj = soilData[soilKey]
+            const uploadData={
+                nitro:(Math.random()*(soilDataObj.Nitrogen.MAX-soilDataObj.Nitrogen.MIN)+soilDataObj.Nitrogen.MIN).toFixed(1),  // nitrogen percentage
+                phosp:(Math.random()*(soilDataObj.Phosphorous.MAX-soilDataObj.Phosphorous.MIN)+soilDataObj.Phosphorous.MIN).toFixed(1),  // nitrogen percentage 
+                potash:(Math.random()*(soilDataObj.Potassium.MAX-soilDataObj.Potassium.MIN)+soilDataObj.Potassium.MIN).toFixed(1),  // nitrogen percentage  
+                temp:weatherData.current.temperature, 
+                humid:weatherData.current.humidity, 
+                ph:(Math.random()*(soilDataObj.ph.MAX-soilDataObj.ph.MIN)+soilDataObj.ph.MIN).toFixed(1),  // nitrogen percentage   
+                rain:weatherData.current.precip 
+            }
+        }catch(err){
+
+        }
+    })
+
     return <SafeAreaView style={{flex:1}}>        
             <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
@@ -171,7 +194,8 @@ const CropDetailScreen = props =>{
                                 </View>                    
                         </Pressable>
                     </View>    
-                </View>    
+                </View>
+                <fetchingModal modalVisible={modalVisible} />    
                 </SafeAreaView>
 }
 

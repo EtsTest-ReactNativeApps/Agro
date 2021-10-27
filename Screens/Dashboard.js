@@ -164,6 +164,7 @@ const Dashboard = props => {
               <SlidingModal 
               modalVisible={modalVisible}
               setModalVisible={setModalVisible}
+              weatherData={data}
               {...props}   /> 
                                     
             </SafeAreaView>

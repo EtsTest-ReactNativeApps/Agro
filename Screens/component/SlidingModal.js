@@ -151,7 +151,10 @@ const SlidingModal = props => {
                                 
                                 await props.setModalVisible(false)
                                 if (statePressed === 'SD'){
-                                  props.navigation.navigate('CropDetailScreen',{soilType:soil})
+                                  props.navigation.navigate('CropDetailScreen',{
+                                    soilType:soil,
+                                    weatherData:props.weatherData
+                                  })
                                 }else{
                                   props.navigation.navigate('CropRecommender');
                                 }
