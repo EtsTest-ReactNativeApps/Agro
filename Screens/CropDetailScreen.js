@@ -31,8 +31,29 @@ const CropDetailScreen = props =>{
                 ph:(Math.random()*(soilDataObj.ph.MAX-soilDataObj.ph.MIN)+soilDataObj.ph.MIN).toFixed(1),  // nitrogen percentage   
                 rain:weatherData.current.precip 
             }
-        }catch(err){
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
+            var raw = JSON.stringify(uploadData);
+
+            var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("https://pytorch-annual.herokuapp.com/getCrop", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setModalVisible(false);
+                props.navigation.navigate('CropRecommender')
+            })
+        }catch(err){
+            console.log('error',err)
+            setModalVisible(false)
+            ToastAndroid.show('Error in fetching geolocation.')
         }
     })
 
@@ -116,7 +137,7 @@ const CropDetailScreen = props =>{
                         borderRadius:15,                        
                     }}>
                         <Pressable
-                        onPress={()=>props.navigation.navigate('CropRecommender')}
+                        onPress={()=>fetchData()}
                         android_ripple={{color:'#E0DBDB'}}
                         style={{
                             width:'100%',
