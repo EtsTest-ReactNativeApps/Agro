@@ -10,25 +10,14 @@ const WeatherModal = props => {
     const [loading,setLoading]=useState(true)
     const [positionString,setPositionString] = useState('')
     const [err,setErr] = useState(null)
-    const fetchWeatherData = useCallback(async()=>{
+
+    const fetchData = useCallback((GPS)=>{
         try{
             var requestOptions = {
                 method: 'GET',
                 redirect: 'follow'
               };
-            await Geolocation.getCurrentPosition(pos=>{
-                setPositionString(`${pos.coords.latitude},${pos.coords.longitude}`)
-                },err=>{
-                    console.log('ERR',err)
-                    setErr(err)
-                },{
-                    enableHighAccuracy: false,
-                    timeout: 3000,
-                    
-                })
-            
-            
-            fetch("http://api.weatherstack.com/current?access_key=9746cc237198a9abfa26421f854baea5&query=26.4870674,80.3491599", requestOptions)
+            fetch(`http://api.weatherstack.com/current?access_key=9746cc237198a9abfa26421f854baea5&query=${GPS[0]},${GPS[1]}`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
@@ -38,8 +27,30 @@ const WeatherModal = props => {
                 props.setData({...result})
                 setLoading(false)
             })
-                                            
-             
+        }catch(err){
+            setLoading(false)
+            console.log('error',err)
+            ToastAndroid.show('Error in fetching Weather Stats.')
+        }
+    })
+
+    const fetchWeatherData = useCallback(async()=>{
+        try{
+            
+            await Geolocation.getCurrentPosition(pos=>{
+                console.log([pos.coords.latitude,pos.coords.longitude])
+                return fetchData([pos.coords.latitude,pos.coords.longitude])
+                },err=>{
+                    console.log('ERR',err)
+                    setErr(err)
+                    return
+                },{
+                    enableHighAccuracy: true,
+                    timeout: 2000,
+                    maximumAge: 3600000
+                    
+                })
+            
         }catch(err){
             setLoading(false)
             console.log('error',err)
