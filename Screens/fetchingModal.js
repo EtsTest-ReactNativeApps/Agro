@@ -25,6 +25,8 @@ const FetchingModal = props => {
                 <View style={{
                     width:width*0.9,
                     height:height*0.25,
+                    backgroundColor:'white',
+                    borderRadius:15,
                     justifyContent:'center',
                     alignItems:'center'}}>
 

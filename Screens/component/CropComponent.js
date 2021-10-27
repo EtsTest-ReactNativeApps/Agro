@@ -5,18 +5,32 @@ const CropComponent = props => {
     const height = Dimensions.get('screen').height
     
     return <View style={{width:width*0.93 ,shadowColor:'black',alignSelf:'center',
-    shadowOffset:{width:5,height:5},shadowRadius:5,elevation:5,backgroundColor:'white',borderRadius:15,marginBottom:20,height:height*0.15,justifyContent:'flex-start',padding:8}}>
+    shadowOffset:{width:5,height:5},
+    shadowRadius:5,
+    elevation:5,
+    backgroundColor:'white',
+    borderRadius:15,
+    marginBottom:20,
+    height:height*0.08,
+    justifyContent:'flex-start'
+    ,padding:8}}>
         <View style={{width:'100%',height:height*0.15*0.3,flexDirection:'row'}}>
-            <View style={{width:height*0.1*0.4,height:height*0.1*0.4}}>
+            <View style={{width:height*0.1*0.3,height:height*0.1*0.3}}>
                 <Image source={require('../../constants/checked.png')} style={{width:'100%',height:'100%'}} />
             </View>
             <View style={{marginLeft:20,width:width*0.95*0.5,height:height*0.08,flexDirection:'column',justifyContent:'flex-start'}}>
                 <View>
-                    <Text style={{fontFamily:'Sora-Regular',fontSize:18,color:'#313131'}}>{props.name}</Text>
+                    <Text style={{
+                        fontFamily:'Sora-SemiBold',
+                        letterSpacing:1.2,
+                        fontSize:15,
+                        fontWeight:'500',
+                        color:'#313131',
+                        textDecorationStyle:'solid'}}>{props.name.toUpperCase()}</Text>
                 </View>
             </View>
         </View>
-        <View style={{width:width*0.65,marginTop:height*0.01,alignItems:'center',flexDirection:'row'}}>
+        {/* <View style={{width:width*0.65,marginTop:height*0.01,alignItems:'center',flexDirection:'row'}}>
             <View style={{width:width*0.3,flexDirection:'row',alignItems:'center'}}>
                 <View style={{width:height*0.2*0.4,height:height*0.2*0.4,alignItems:'center',justifyContent:'center'}}>
                     <View style={{width:height*0.2*0.25,height:height*0.2*0.25}}>
@@ -55,8 +69,8 @@ const CropComponent = props => {
                         {props.humidity}
                     </Text>
                 </View>
-            </View>
-        </View>        
+            </View> 
+        </View>  */}      
     </View>
 
 }

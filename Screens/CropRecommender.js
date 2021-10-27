@@ -20,21 +20,13 @@ const CropRecommender = props => {
     const name=props.navigation.getParam('name')
     const [pressed,setPressed]=useState(false)
 
-    const completeData=[{name:'bajra',rain:'10 mm',sun:'35 °C',humidity:'18 %'},
-                        {name:'Maze',rain:'10 mm',sun:'35 °C',humidity:'18 %'},
-                        {name:'Rice',rain:'10 mm',sun:'35 °C',humidity:'18 %'},
-                        {name:'Millets',rain:'10 mm',sun:'35 °C',humidity:'18 %'},
-                        {name:'Pulses',rain:'10 mm',sun:'35 °C',humidity:'18 %'},
-                        {name:'Sugarcane',rain:'10 mm',sun:'35 °C',humidity:'18 %'},
-                        {name:'Tea',rain:'10 mm',sun:'35 °C',humidity:'18 %'}]
+    const completeData=props.navigation.getParam('crops')
 
     const extract=useCallback((item,index)=>index,[])
     const render=useCallback(({item})=>
         <CropComponent 
-            name={item.name} 
-            rain={item.rain} 
-            sun={item.sun} 
-            humidity={item.humidity} />,[])
+            name={item} 
+             />,[])
     return <SafeAreaView style={{flex:1}}>        
             <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>

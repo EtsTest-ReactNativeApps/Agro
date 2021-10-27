@@ -1,10 +1,11 @@
+import axios from "axios";
 import React,{  useCallback, useEffect, useRef, useState } from "react";
 import { FlatList, Image, PermissionsAndroid, Platform, Text, ToastAndroid } from "react-native";
 import { Dimensions, Pressable, View } from "react-native";
 import { Modal } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Next from '../constants/next.png'
-import fetchingModal from "./fetchingModal";
+import FetchingModal from "./fetchingModal";
 import soilData from "./soilData";
 
 
@@ -31,30 +32,36 @@ const CropDetailScreen = props =>{
                 ph:(Math.random()*(soilDataObj.ph.MAX-soilDataObj.ph.MIN)+soilDataObj.ph.MIN).toFixed(1),  // nitrogen percentage   
                 rain:weatherData.current.precip 
             }
+            console.log(uploadData)
             var myHeaders = new Headers();
+            var raw = JSON.stringify(uploadData)
             myHeaders.append("Content-Type", "application/json");
-
-            var raw = JSON.stringify(uploadData);
-
             var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-            };
-
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+              };
+              
             fetch("https://pytorch-annual.herokuapp.com/getCrop", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
+            .then(res=>res.json())
+            .then(response => {
+                console.log(response);
                 setModalVisible(false);
-                props.navigation.navigate('CropRecommender')
+                const crops=[response.result.recommended,...response.result.similar]
+                props.navigation.navigate('CropRecommender',{crops:crops})
+            })
+            .catch(err=>{
+                console.log(err)
+                setModalVisible(false)
+                throw err
             })
         }catch(err){
             console.log('error',err)
             setModalVisible(false)
-            ToastAndroid.show('Error in fetching geolocation.')
+            ToastAndroid.show('Error in fetching crops.')
         }
+        
     })
 
     return <SafeAreaView style={{flex:1}}>        
@@ -216,7 +223,7 @@ const CropDetailScreen = props =>{
                         </Pressable>
                     </View>    
                 </View>
-                <fetchingModal modalVisible={modalVisible} />    
+                <FetchingModal modalVisible={modalVisible} />    
                 </SafeAreaView>
 }
 
