@@ -173,6 +173,7 @@ const Dashboard = props => {
               soilModalVisible={soilModalVisible}
               setSoilModalVisible={setSoilModalVisible}
               setModalVisible={setModalVisible}
+              data={data}
               {...props} />            
             </SafeAreaView>
               
