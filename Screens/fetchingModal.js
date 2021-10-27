@@ -23,8 +23,8 @@ const FetchingModal = props => {
             backdropOpacity={0.5} 
                 >
                 <View style={{
-                    width:width*0.9,
-                    height:height*0.25,
+                    width:width*0.75,
+                    height:height*0.20,
                     backgroundColor:'white',
                     borderRadius:15,
                     justifyContent:'center',

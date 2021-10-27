@@ -65,9 +65,9 @@ const WeatherModal = props => {
     return    <Modal                
                     style={{justifyContent:'center',alignItems:'center'}}
                     contentContainerStyle={{
-                        width:width*0.9,
+                        width:width*0.75,
                         borderRadius:20,
-                        height:height*0.25,
+                        height:height*0.20,
                         backgroundColor:'white',
                         justifyContent:'center',
                         alignItems:'center'}}
@@ -75,8 +75,8 @@ const WeatherModal = props => {
                     transparent={true}
                     visible={loading}  >
                     <View style={{
-                        width:width*0.9,
-                        height:height*0.25,
+                        width:width*0.75,
+                        height:height*0.20,
                         }}>
                         {!err?<View style={{width:'100%',height:'100%',justifyContent:'center',alignItems:'center'}}>
                             <RippleLoader  

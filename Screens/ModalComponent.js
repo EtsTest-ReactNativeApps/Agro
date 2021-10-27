@@ -189,12 +189,12 @@ const ModalComponent = props => {
     })
     return <Modal
             style={{justifyContent:'center',alignItems:'center'}}
-            contentContainerStyle={{width:width*0.9,borderRadius:20,height:height*0.25,backgroundColor:'white',justifyContent:'center',alignItems:'center'}}
+            contentContainerStyle={{width:width*0.75,borderRadius:20,height:height*0.20,backgroundColor:'white',justifyContent:'center',alignItems:'center'}}
                 animationType='slide'
                 transparent={true}
                 visible={modal} 
                 >
-            {!detecting?<View style={{width:width*0.9,height:height*0.25,justifyContent:'flex-start',alignItems:'center'}}>
+            {!detecting?<View style={{width:width*0.75,height:height*0.20,justifyContent:'flex-start',alignItems:'center'}}>
                 <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Launch Camera</Text>
@@ -208,8 +208,8 @@ const ModalComponent = props => {
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#313131'}}>Cancel</Text>
                 </Pressable>
                </View>:<View style={{
-                        width:width*0.9,
-                        height:height*0.25,
+                        width:width*0.75,
+                        height:height*0.20,
                         justifyContent:'center',
                         alignItems:'center'}}>
 
