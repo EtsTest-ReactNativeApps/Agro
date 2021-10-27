@@ -195,15 +195,15 @@ const ModalComponent = props => {
                 visible={modal} 
                 >
             {!detecting?<View style={{width:width*0.75,height:height*0.20,justifyContent:'flex-start',alignItems:'center'}}>
-                <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
+                <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.25,borderBottomWidth:0.5,borderBottomColor:'#DBD7D7',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Launch Camera</Text>
                 </Pressable>
-                <Pressable onPress={()=>{chooseFile('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'grey',
+                <Pressable onPress={()=>{chooseFile('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.25,borderBottomWidth:0.5,borderBottomColor:'#DBD7D7',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Upload from Gallery</Text>
                 </Pressable>
-                <Pressable onPress={()=>{setModal(false)}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.3,borderBottomColor:'grey',
+                <Pressable onPress={()=>{setModal(false)}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.2,borderBottomColor:'grey',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#313131'}}>Cancel</Text>
                 </Pressable>
