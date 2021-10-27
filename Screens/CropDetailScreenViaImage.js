@@ -17,6 +17,7 @@ const CropDetailScreenViaImage = props =>{
     const name=props.navigation.getParam('soilType')
     const weatherData = props.navigation.getParam('weatherData')
     const [modalVisible,setModalVisible]=useState(false)
+    const soil_dict={'Black':0,'Clayey':1,"Loamy":2,"Red":3,"Sandy":4}
     const fetchData = useCallback(()=>{
         setModalVisible(true)
         try{
@@ -47,7 +48,7 @@ const CropDetailScreenViaImage = props =>{
             .then(response => {
                 console.log(response);
                 setModalVisible(false);
-                const crops=[response.result.recommended,...response.result.similar]
+                const crops=[response.result.recommended,response.result.similar]
                 props.navigation.navigate('CropRecommender',{crops:crops})
             })
             .catch(err=>{
@@ -63,6 +64,52 @@ const CropDetailScreenViaImage = props =>{
         
     })
 
+    const fetchDataFerti = useCallback(()=>{
+        setModalVisible(true)
+        try{
+            const soilKey=name.split(' ')[0]
+            const soilDataObj = soilData[soilKey]
+            const value=Object.keys(soil_dict).findIndex(item=>item===soilKey)
+            const uploadData={
+                nitro:(Math.random()*(soilDataObj.Nitrogen.MAX-soilDataObj.Nitrogen.MIN)+soilDataObj.Nitrogen.MIN).toFixed(1),  
+                phosp:(Math.random()*(soilDataObj.Phosphorous.MAX-soilDataObj.Phosphorous.MIN)+soilDataObj.Phosphorous.MIN).toFixed(1),  
+                pota:(Math.random()*(soilDataObj.Potassium.MAX-soilDataObj.Potassium.MIN)+soilDataObj.Potassium.MIN).toFixed(1),  
+                temp:weatherData.current.temperature, 
+                humid:weatherData.current.humidity, 
+                soil_type:value,   
+                moisture:weatherData.current.precip 
+            }
+            console.log(uploadData)
+            var myHeaders = new Headers();
+            var raw = JSON.stringify(uploadData)
+            myHeaders.append("Content-Type", "application/json");
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+              };
+              
+            fetch("https://pytorch-annual.herokuapp.com/getFertilizer", requestOptions)
+            .then(res=>res.json())
+            .then(response => {
+                console.log(response);
+                setModalVisible(false);
+                const fertis=[response.result.recommended,response.result.similar]
+                props.navigation.navigate('FertiliserRecommender',{ferti:fertis})
+            })
+            .catch(err=>{
+                console.log(err)
+                setModalVisible(false)
+                throw err
+            })
+        }catch(err){
+            console.log('error',err)
+            setModalVisible(false)
+            ToastAndroid.show('Error in fetching Fertilizers.')
+        }
+        
+    })
     return <SafeAreaView style={{flex:1}}>        
             <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
@@ -194,7 +241,7 @@ const CropDetailScreenViaImage = props =>{
                         borderRadius:15,                        
                     }}>
                         <Pressable
-                        onPress={()=>props.navigation.navigate('CropRecommender')}
+                        onPress={()=>fetchDataFerti()}
                         android_ripple={{color:'#E0DBDB'}}
                         style={{
                             width:'100%',

@@ -14,10 +14,10 @@ import CropComponent from "./component/CropComponent";
 
 
 
-const CropRecommender = props => {
+const FertilizerRecommmender = props => {
     const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
-    const completeData=props.navigation.getParam('crops')
+    const completeData=props.navigation.getParam('ferti')
     console.log(completeData)
 
     const extract=useCallback((item,index)=>index,[])
@@ -52,7 +52,7 @@ const CropRecommender = props => {
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
                                <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                                 Crop Advisor
+                                 Fertilizer Advisor
                                 </Text>
                         </View>                        
                     </View>
@@ -61,13 +61,13 @@ const CropRecommender = props => {
                
                 <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                        Recommended Crop
+                        Recommended Fertilizer
                     </Text>
                 </View>
                 <CropComponent name={completeData[0]} />
                 <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                        Similar Crops
+                        Similar Fertlizer
                     </Text>
                 </View>
                 <View >
@@ -85,4 +85,4 @@ const CropRecommender = props => {
 
 }
 
-export default React.memo(CropRecommender);
+export default React.memo(FertilizerRecommmender);

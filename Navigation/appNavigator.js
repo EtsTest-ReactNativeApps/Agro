@@ -29,13 +29,15 @@ import CropRecommender from '../Screens/CropRecommender';
 import Welcome from '../Screens/Welcome';
 import CropDetailScreen from '../Screens/CropDetailScreen';
 import CropDetailScreenViaImage from '../Screens/CropDetailScreenViaImage';
+import FertilizerRecommender from '../Screens/FertilizerRecommender';
 const AppNavigator=createStackNavigator({
     Dashboard:AppDashboard,
     PreDetectScreen:PreDetectScreen,
     DetailScreen:DetailScreen,
     CropRecommender:CropRecommender,
     CropDetailScreen:CropDetailScreen,
-    CropDetailScreenViaImage:CropDetailScreenViaImage
+    CropDetailScreenViaImage:CropDetailScreenViaImage,
+    FertiliserRecommender:FertilizerRecommender
     },{headerMode:'none'});
     const AuthNavigator=createStackNavigator({
         HomeScreen,

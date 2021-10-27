@@ -175,9 +175,7 @@ const Dashboard = props => {
               setModalVisible={setModalVisible}
               data={data}
               {...props} />            
-            </SafeAreaView>
-              
-                )
+            </SafeAreaView>)
                 
 
 }
