@@ -52,6 +52,9 @@ const SoilFormComponentModal = props => {
                 weatherData:props.weatherData,
                 npk:[parseFloat(potash.value),parseFloat(phospo.value),parseFloat(nitro.value)]
                 })
+                setNitro({value:'',error:''})
+                setPotash({value:'',error:''})
+                setPhospo({value:'',error:''})
                 props.setModalVisible(false);
                 props.setSoilFormModalVisible(false)
                 props.setSoil('')
