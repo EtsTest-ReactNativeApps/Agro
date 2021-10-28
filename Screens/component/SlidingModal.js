@@ -33,8 +33,8 @@ const SlidingModal = props => {
                     hasBackdrop={true}
                     style={{alignItems:'center'}}
                     backdropColor={'#292828'}
-                    animationOut={'slideOutDown'}
-                    animationOutTiming={600}
+                    animationOut={statePressed === 'SD'?'slideInLeft':'slideOutDown'}
+                    animationOutTiming={700}
                     animationInTiming={400}
                     animationIn='slideInUp'
                     backdropOpacity={0.5}
@@ -149,12 +149,10 @@ const SlidingModal = props => {
                             disabled={statePressed === 'SG'?false:soil?false:true}
                               onPress={async ()=>{
                                 
-                                await props.setModalVisible(false)
+                                props.setModalVisible(false)
                                 if (statePressed === 'SD'){
-                                  props.navigation.navigate('CropDetailScreen',{
-                                    soilType:soil,
-                                    weatherData:props.weatherData
-                                  })
+                                  props.setSoilFormModalVisible(true)
+                                  props.setSoil(soil)
                                 }else{
                                   props.setSoilModalVisible(true)
                                 }

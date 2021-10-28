@@ -4,6 +4,7 @@ import {View, Button,Pressable,Image,Text,Modal, StyleSheet, TouchableNativeFeed
 import WeatherModal from "./WeatherModal";
 import SlidingModal from "./component/SlidingModal";
 import SoilModalComponent from "./SoilModalComponent";
+import SoilFormComponentModal from "./SoilFormComponentModal";
 
 const Dashboard = props => {
     
@@ -12,6 +13,8 @@ const Dashboard = props => {
     const [rain,setRain]=useState('')
     const [modalVisible,setModalVisible]=useState(false)
     const [soilModalVisible,setSoilModalVisible]=useState(false)
+    const [soilFormModalVisible,setSoilFormModalVisible]=useState(false)
+    const [soil,setSoil]=useState('')
     const [data,setData]=useState(null)
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
@@ -157,24 +160,42 @@ const Dashboard = props => {
                     </View>                  
                 </View>
               </View>
+
               <WeatherModal 
               setWind={setWind} 
               setTemp={setTemp} 
               setRain={setRain}
               setData={setData} 
               {...props} />
+
               <SlidingModal 
               modalVisible={modalVisible}
               setModalVisible={setModalVisible}
+              setSoil={setSoil}
+              soil={soil}
               setSoilModalVisible={setSoilModalVisible}
+              setSoilFormModalVisible={setSoilFormModalVisible}
               weatherData={data}
               {...props}   /> 
+
               <SoilModalComponent
               soilModalVisible={soilModalVisible}
               setSoilModalVisible={setSoilModalVisible}
               setModalVisible={setModalVisible}
               data={data}
-              {...props} />            
+              {...props} /> 
+
+              <SoilFormComponentModal 
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
+              soilFormModalVisible={soilFormModalVisible}
+              setSoilFormModalVisible={setSoilFormModalVisible}
+              setSoil={setSoil}
+              soil={soil}
+              setSoilModalVisible={setSoilModalVisible}
+              weatherData={data}
+              {...props} />  
+
             </SafeAreaView>)
                 
 

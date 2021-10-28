@@ -15,7 +15,8 @@ const CropDetailScreen = props =>{
   const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('soilType')
-    const weatherData = props.navigation.getParam('weatherData')
+    const weatherData = props.navigation.getParam('npk')
+    const npk = props.navigation.getParam('weatherData')
     const soil_dict={'Black':0,'Clayey':1,"Loamy":2,"Red":3,"Sandy":4}
     const [pressed,setPressed]=useState(false)
     const [modalVisible,setModalVisible]=useState(false)
@@ -25,9 +26,9 @@ const CropDetailScreen = props =>{
             const soilKey=name.split(' ')[0]
             const soilDataObj = soilData[soilKey]
             const uploadData={
-                nitro:(Math.random()*(soilDataObj.Nitrogen.MAX-soilDataObj.Nitrogen.MIN)+soilDataObj.Nitrogen.MIN).toFixed(1),  // nitrogen percentage
-                phosp:(Math.random()*(soilDataObj.Phosphorous.MAX-soilDataObj.Phosphorous.MIN)+soilDataObj.Phosphorous.MIN).toFixed(1),  // nitrogen percentage 
-                potash:(Math.random()*(soilDataObj.Potassium.MAX-soilDataObj.Potassium.MIN)+soilDataObj.Potassium.MIN).toFixed(1),  // nitrogen percentage  
+                nitro:npk[0],  // nitrogen percentage
+                phosp:npk[1],  // nitrogen percentage 
+                potash:npk[2],  // nitrogen percentage  
                 temp:weatherData.current.temperature, 
                 humid:weatherData.current.humidity, 
                 ph:(Math.random()*(soilDataObj.ph.MAX-soilDataObj.ph.MIN)+soilDataObj.ph.MIN).toFixed(1),  // nitrogen percentage   
@@ -65,52 +66,52 @@ const CropDetailScreen = props =>{
         
     })
 
-    const fetchDataFerti = useCallback(()=>{
-        setModalVisible(true)
-        try{
-            const soilKey=name.split(' ')[0]
-            const soilDataObj = soilData[soilKey]
-            const value=Object.keys(soil_dict).findIndex(item=>item===soilKey)
-            const uploadData={
-                nitro:(Math.random()*(soilDataObj.Nitrogen.MAX-soilDataObj.Nitrogen.MIN)+soilDataObj.Nitrogen.MIN).toFixed(1),  
-                phosp:(Math.random()*(soilDataObj.Phosphorous.MAX-soilDataObj.Phosphorous.MIN)+soilDataObj.Phosphorous.MIN).toFixed(1),  
-                pota:(Math.random()*(soilDataObj.Potassium.MAX-soilDataObj.Potassium.MIN)+soilDataObj.Potassium.MIN).toFixed(1),  
-                temp:weatherData.current.temperature, 
-                humid:weatherData.current.humidity, 
-                soil_type:value,   
-                moisture:weatherData.current.precip 
-            }
-            console.log(uploadData)
-            var myHeaders = new Headers();
-            var raw = JSON.stringify(uploadData)
-            myHeaders.append("Content-Type", "application/json");
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-              };
+    // const fetchDataFerti = useCallback(()=>{
+    //     setModalVisible(true)
+    //     try{
+    //         const soilKey=name.split(' ')[0]
+    //         const soilDataObj = soilData[soilKey]
+    //         const value=Object.keys(soil_dict).findIndex(item=>item===soilKey)
+    //         const uploadData={
+    //             nitro:,  
+    //             phosp:,  
+    //             pota:,  
+    //             temp:weatherData.current.temperature, 
+    //             humid:weatherData.current.humidity, 
+    //             soil_type:value,   
+    //             moisture:weatherData.current.precip 
+    //         }
+    //         console.log(uploadData)
+    //         var myHeaders = new Headers();
+    //         var raw = JSON.stringify(uploadData)
+    //         myHeaders.append("Content-Type", "application/json");
+    //         var requestOptions = {
+    //             method: 'POST',
+    //             headers: myHeaders,
+    //             body: raw,
+    //             redirect: 'follow'
+    //           };
               
-            fetch("https://pytorch-annual.herokuapp.com/getFertilizer", requestOptions)
-            .then(res=>res.json())
-            .then(response => {
-                console.log(response);
-                setModalVisible(false);
-                const fertis=[response.result.recommended,response.result.similar]
-                props.navigation.navigate('FertiliserRecommender',{ferti:fertis})
-            })
-            .catch(err=>{
-                console.log(err)
-                setModalVisible(false)
-                throw err
-            })
-        }catch(err){
-            console.log('error',err)
-            setModalVisible(false)
-            ToastAndroid.show('Error in fetching Fertilizers.')
-        }
+    //         fetch("https://pytorch-annual.herokuapp.com/getFertilizer", requestOptions)
+    //         .then(res=>res.json())
+    //         .then(response => {
+    //             console.log(response);
+    //             setModalVisible(false);
+    //             const fertis=[response.result.recommended,response.result.similar]
+    //             props.navigation.navigate('FertiliserRecommender',{ferti:fertis})
+    //         })
+    //         .catch(err=>{
+    //             console.log(err)
+    //             setModalVisible(false)
+    //             throw err
+    //         })
+    //     }catch(err){
+    //         console.log('error',err)
+    //         setModalVisible(false)
+    //         ToastAndroid.show('Error in fetching Fertilizers.')
+    //     }
         
-    })
+    // })
 
     return <SafeAreaView style={{flex:1}}>        
             <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
@@ -229,7 +230,7 @@ const CropDetailScreen = props =>{
                         <View style={{width:'45%',height:1.2,backgroundColor:'#DBD7D7'}} />                    
                     </View>
 
-                    <View style={{
+                    {/* <View style={{
                         width:width*.95,
                         height:height*0.12,
                         overflow:'hidden',
@@ -269,7 +270,7 @@ const CropDetailScreen = props =>{
                                         style={{width:'100%',height:'100%'}}/>
                                 </View>                    
                         </Pressable>
-                    </View>    
+                    </View>     */}
                 </View>
                 <FetchingModal modalVisible={modalVisible} />    
                 </SafeAreaView>
