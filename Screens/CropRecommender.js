@@ -25,62 +25,63 @@ const CropRecommender = props => {
         <CropComponent 
             name={item} 
              />,[])
-    return <SafeAreaView style={{flex:1}}>        
-            <ScrollView contentContainerStyle={{width:width,height:height*0.9,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
-                <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
-                    <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
-                        justifyContent:'center',
-                        alignItems:'center',backgroundColor:'white',
-                        padding:12,
-                        height:width*0.1,borderRadius:width*0.1,elevation:5,
-                        shadowColor:'black',shadowOpacity:5,shadowRadius:5}}>
-                            <Image source={Next} style={{width:'100%',height:'100%'}} />                        
-                    </Pressable>
-                    <View style={{width:width*0.45,height:'100%',justifyContent:'space-between'}}>
-                       <View style={{
-                           width:width*0.45,
-                           height:height*0.056,
-                           borderRadius:9,
-                           elevation:1,
-                           marginLeft:width*0.15,
-                           padding:10,
-                           backgroundColor:'white',
-                           justifyContent:'center',
-                           alignItems:'center',
-                           shadowColor:'black',
-                           shadowOffset:{width:0,height:4},
-                           shadowOpacity:0.4,
-                           shadowRadius:4}}>
-                               <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                                 Crop Advisor
-                                </Text>
-                        </View>                        
+    return <SafeAreaView style={{flex:1}}>
+            <View style={{alignItems:'center',width:width,justifyContent:'flex-start'}}>        
+            <FlatList style={{width:width*.95,height:height*0.9,backgroundColor:'#F8F8F8'}} 
+                ListHeaderComponent={
+                <View>
+                    <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
+                        <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
+                            justifyContent:'center',
+                            alignItems:'center',backgroundColor:'white',
+                            padding:12,
+                            height:width*0.1,borderRadius:width*0.1,elevation:5,
+                            shadowColor:'black',shadowOpacity:5,shadowRadius:5}}>
+                                <Image source={Next} style={{width:'100%',height:'100%'}} />                        
+                        </Pressable>
+                        <View style={{width:width*0.45,height:'100%',justifyContent:'space-between'}}>
+                        <View style={{
+                            width:width*0.45,
+                            height:height*0.056,
+                            borderRadius:9,
+                            elevation:1,
+                            marginLeft:width*0.15,
+                            padding:10,
+                            backgroundColor:'white',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            shadowColor:'black',
+                            shadowOffset:{width:0,height:4},
+                            shadowOpacity:0.4,
+                            shadowRadius:4}}>
+                                <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
+                                    Crop Advisor
+                                            </Text>
+                                    </View>                        
+                            </View>
+                        </View>                               
+                
+                    <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
+                        <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
+                            Recommended Crop
+                        </Text>
                     </View>
-                </View>        
-                                       
-               
-                <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
-                    <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                        Recommended Crop
-                    </Text>
-                </View>
-                <CropComponent name={completeData[0]} />
-                <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
-                    <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                        Similar Crops
-                    </Text>
-                </View>
-                <View >
-                <FlatList 
+                    <CropComponent name={completeData[0]} />
+                    <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
+                        <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
+                            Similar Crops
+                        </Text>
+                    </View>
+                </View>}
+                data={completeData[1]}
                 showsVerticalScrollIndicator={false} 
                 numColumns={1} 
-                keyExtractor={extract} 
-                style={{width:width*0.95}} 
-                data={completeData[1]}  
-                renderItem={render} 
-                 />
-                 </View>
-            </ScrollView>                 
+                keyExtractor={extract}
+                renderItem={render} />
+                
+                
+            
+            </View>                 
         </SafeAreaView>
 
 }
