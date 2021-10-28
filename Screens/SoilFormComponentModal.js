@@ -13,6 +13,7 @@ const SoilFormComponentModal = props => {
     const [nitro,setNitro]=useState({value:'',error:''})
     const [potash,setPotash]=useState({value:'',error:''})
     const [phospo,setPhospo]=useState({value:'',error:''})
+    const [ph,setPh]=useState({value:'',error:''})
     const checErrNitro = () => {
         if (!nitro.value){
             setNitro({...nitro,error:'enter nitrogen'})
@@ -37,29 +38,85 @@ const SoilFormComponentModal = props => {
             return false
         }
     }
-    
-    const continuePressed = () => {
-        const er1=checErrPotash()
-        const er2=checErrPhospo()
-        const er3=checErrNitro()
-        if ( er1  || er2  || er3){
-            return {}
+    const checErrPh = () => {
+        if (!ph.value){
+            setPh({...ph,error:'enter ph '})
+            return true
+        }else if(parseInt(ph.value)<=14 && parseInt(ph.value)>0){
+            return false
         }else{
-            console.log(parseFloat(potash.value)+ parseFloat(phospo.value) + parseFloat(nitro.value) )
-            if ((parseFloat(potash.value) + parseFloat(phospo.value) + parseFloat(nitro.value)) < 100.00){
-                props.navigation.navigate('CropDetailScreen',{
-                soilType:props.soil,
-                weatherData:props.weatherData,
-                npk:[parseFloat(potash.value),parseFloat(phospo.value),parseFloat(nitro.value)]
-                })
+            setPh({...ph,error:'ph must be between 0 and 14'})
+            return true
+        }
+    }
+
+    const fetchData = useCallback((npk)=>{
+        props.setSoilFetchingModalVisible(true)
+        try{
+            const uploadData={
+                nitro:npk[0],  // nitrogen percentage
+                phosp:npk[1],  // nitrogen percentage 
+                potash:npk[2],  // nitrogen percentage  
+                temp:props.weatherData.current.temperature, 
+                humid:props.weatherData.current.humidity, 
+                ph:npk[3],
+                rain:props.weatherData.current.precip 
+            }
+            console.log(uploadData)
+            var myHeaders = new Headers();
+            var raw = JSON.stringify(uploadData)
+            myHeaders.append("Content-Type", "application/json");
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+              };
+              
+            fetch("https://pytorch-annual.herokuapp.com/getCrop", requestOptions)
+            .then(res=>res.json())
+            .then(response => {
+                console.log(response);
+                props.setSoilFetchingModalVisible(false);
+                const crops=[response.result.recommended,response.result.similar]
+                props.navigation.navigate('CropRecommender',{crops:crops})
                 setNitro({value:'',error:''})
                 setPotash({value:'',error:''})
                 setPhospo({value:'',error:''})
+                setPh({value:'',error:''})
                 props.setModalVisible(false);
                 props.setSoilFormModalVisible(false)
                 props.setSoil('')
+            })
+            .catch(err=>{
+                console.log(err)
+                props.setModalVisible(false);
+                props.setSoilFetchingModalVisible(false);
+                throw err
+            })
+        }catch(err){
+            console.log('error',err)
+            props.setModalVisible(false);
+            props.setSoilFetchingModalVisible(false);
+            ToastAndroid.show('Error in fetching crops.')
+        }
+        
+    })
+
+    const continuePressed = async () => {
+        const er1=checErrPotash()
+        const er2=checErrPhospo()
+        const er3=checErrNitro()
+        const er4=checErrPh()
+        if ( er1  || er2  || er3 || er4){
+            return {}
+        }else{
+            console.log(parseFloat(potash.value)+ parseFloat(phospo.value) + parseFloat(nitro.value) + parseFloat(ph.value) )
+            if ((parseFloat(potash.value) + parseFloat(phospo.value) + parseFloat(nitro.value)) < 100.00){
+                const npk=[parseFloat(potash.value),parseFloat(phospo.value),parseFloat(nitro.value),parseFloat(ph.value)]
+                await fetchData(npk)
             }else{
-                alert('Values must add upto below 100')
+                alert('Values must add upto below 100 %')
             }
         }        
         return {};
@@ -83,8 +140,8 @@ const SoilFormComponentModal = props => {
                       <View 
                         style={{
                           width:width,
-                          height:height*0.6,
-                          marginTop:height*0.35,
+                          height:height*0.75,
+                          marginTop:height*0.25,
                           paddingHorizontal:width*0.03,
                           paddingBottom:10,
                           paddingTop:20,
@@ -103,7 +160,7 @@ const SoilFormComponentModal = props => {
                             </Text>
                           <SoilTextInput
                           height={height*0.05}
-                          label="Nitrogen"
+                          label="Nitrogen %"
                           returnKeyType="next"
                           value={nitro.value}
                           onChangeText={text => {setNitro({ value: text, error: "" })}}
@@ -114,7 +171,7 @@ const SoilFormComponentModal = props => {
 
                           <SoilTextInput
                           height={height*0.05}
-                          label="Phosophorus"
+                          label="Phosophorus %"
                           returnKeyType="next"
                           value={phospo.value}
                           onChangeText={text => {setPhospo({ value: text, error: "" });}}
@@ -125,7 +182,7 @@ const SoilFormComponentModal = props => {
 
                           <SoilTextInput
                           height={height*0.05}
-                          label="Potassium"
+                          label="Potassium %"
                           returnKeyType="next"
                           value={potash.value}
                           onChangeText={text => {setPotash({ value: text, error: "" });}}
@@ -133,17 +190,28 @@ const SoilFormComponentModal = props => {
                           errorText={potash.error}
                           autoCapitalize="none"
                           keyboardType="number-pad" />
+
+                          <SoilTextInput
+                          height={height*0.05}
+                          label="Ph"
+                          returnKeyType="next"
+                          value={ph.value}
+                          onChangeText={text => {setPh({ value: text, error: "" });}}
+                          error={!!ph.error}
+                          errorText={ph.error}
+                          autoCapitalize="none"
+                          keyboardType="number-pad" />
                                                       
                             <Pressable
                             disabled={
-                                nitro.error && phospo.error && potash.error?true:false
+                                nitro.error && phospo.error && potash.error && ph.error?true:false
                             }
                               onPress={continuePressed}
                               android_ripple={{color:'grey'}} style={{
                                 overflow:'hidden',
                               width:width*0.95,
                               height:height*0.06,
-                              marginTop:height*0.04,
+                              marginTop:height*0.1,
                               borderRadius:5,                       
                               elevation:3,
                               justifyContent:'center',

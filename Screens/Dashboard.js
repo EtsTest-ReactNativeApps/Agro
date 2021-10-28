@@ -5,6 +5,7 @@ import WeatherModal from "./WeatherModal";
 import SlidingModal from "./component/SlidingModal";
 import SoilModalComponent from "./SoilModalComponent";
 import SoilFormComponentModal from "./SoilFormComponentModal";
+import SoilFetchingModal from "./SoilFetchingModal";
 
 const Dashboard = props => {
     
@@ -14,6 +15,7 @@ const Dashboard = props => {
     const [modalVisible,setModalVisible]=useState(false)
     const [soilModalVisible,setSoilModalVisible]=useState(false)
     const [soilFormModalVisible,setSoilFormModalVisible]=useState(false)
+    const [soilFetchingModalVisible,setSoilFetchingModalVisible]=useState(false)
     const [soil,setSoil]=useState('')
     const [data,setData]=useState(null)
     const width=Dimensions.get('screen').width
@@ -195,7 +197,8 @@ const Dashboard = props => {
               data={data}
               {...props} /> 
 
-              <SoilFormComponentModal 
+              <SoilFormComponentModal
+              setSoilFetchingModalVisible ={setSoilFetchingModalVisible}
               modalVisible={modalVisible}
               setModalVisible={setModalVisible}
               soilFormModalVisible={soilFormModalVisible}
@@ -205,6 +208,9 @@ const Dashboard = props => {
               setSoilModalVisible={setSoilModalVisible}
               weatherData={data}
               {...props} />  
+
+              <SoilFetchingModal 
+              soilFetchingModalVisible={soilFetchingModalVisible}/>
 
             </SafeAreaView>)
                 

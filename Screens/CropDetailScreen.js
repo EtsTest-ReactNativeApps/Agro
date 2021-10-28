@@ -20,51 +20,7 @@ const CropDetailScreen = props =>{
     const soil_dict={'Black':0,'Clayey':1,"Loamy":2,"Red":3,"Sandy":4}
     const [pressed,setPressed]=useState(false)
     const [modalVisible,setModalVisible]=useState(false)
-    const fetchData = useCallback(()=>{
-        setModalVisible(true)
-        try{
-            const soilKey=name.split(' ')[0]
-            const soilDataObj = soilData[soilKey]
-            const uploadData={
-                nitro:npk[0],  // nitrogen percentage
-                phosp:npk[1],  // nitrogen percentage 
-                potash:npk[2],  // nitrogen percentage  
-                temp:weatherData.current.temperature, 
-                humid:weatherData.current.humidity, 
-                ph:(Math.random()*(soilDataObj.ph.MAX-soilDataObj.ph.MIN)+soilDataObj.ph.MIN).toFixed(1),  // nitrogen percentage   
-                rain:weatherData.current.precip 
-            }
-            console.log(uploadData)
-            var myHeaders = new Headers();
-            var raw = JSON.stringify(uploadData)
-            myHeaders.append("Content-Type", "application/json");
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-              };
-              
-            fetch("https://pytorch-annual.herokuapp.com/getCrop", requestOptions)
-            .then(res=>res.json())
-            .then(response => {
-                console.log(response);
-                setModalVisible(false);
-                const crops=[response.result.recommended,response.result.similar]
-                props.navigation.navigate('CropRecommender',{crops:crops})
-            })
-            .catch(err=>{
-                console.log(err)
-                setModalVisible(false)
-                throw err
-            })
-        }catch(err){
-            console.log('error',err)
-            setModalVisible(false)
-            ToastAndroid.show('Error in fetching crops.')
-        }
-        
-    })
+    
 
     // const fetchDataFerti = useCallback(()=>{
     //     setModalVisible(true)
