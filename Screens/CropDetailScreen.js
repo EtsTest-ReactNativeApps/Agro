@@ -15,8 +15,8 @@ const CropDetailScreen = props =>{
   const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('soilType')
-    const weatherData = props.navigation.getParam('npk')
-    const npk = props.navigation.getParam('weatherData')
+    const weatherData = props.navigation.getParam('weatherData')
+    const npk = props.navigation.getParam('npk')
     const soil_dict={'Black':0,'Clayey':1,"Loamy":2,"Red":3,"Sandy":4}
     const [pressed,setPressed]=useState(false)
     const [modalVisible,setModalVisible]=useState(false)

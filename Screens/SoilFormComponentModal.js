@@ -16,37 +16,49 @@ const SoilFormComponentModal = props => {
     const checErrNitro = () => {
         if (!nitro.value){
             setNitro({...nitro,error:'enter nitrogen'})
+            return true
+        }else{
+            return false
         }
     }
     const checErrPhospo = () => {
         if (!phospo.value){
             setPhospo({...phospo,error:'enter phosphorus'})
+            return true
+        }else{
+            return false
         }
     }
     const checErrPotash = () => {
         if (!potash.value){
             setPotash({...potash,error:'enter potassium'})
+            return true
+        }else{
+            return false
         }
     }
     
     const continuePressed = () => {
-        checErrPotash()
-        checErrPhospo()
-        checErrNitro()
-        if ((potash.value && phospo.value && nitro.value) && ((potash.value + phospo.value + nitro.value) < 100)){
-            props.navigation.navigate('CropDetailScreen',{
-            soilType:props.soil,
-            weatherData:props.weatherData,
-            npk:[nitro.value,phospo.value,potash.value]
-            })
-            props.setModalVisible(false);
-            props.setSoilFormModalVisible(false)
-            props.setSoil('')
-        }else if(potash.error || phospo.error || nitro.error){
-            
+        const er1=checErrPotash()
+        const er2=checErrPhospo()
+        const er3=checErrNitro()
+        if ( er1  || er2  || er3){
+            return {}
         }else{
-            alert('Values must add upto below 100')
-        }
+            console.log(parseFloat(potash.value)+ parseFloat(phospo.value) + parseFloat(nitro.value) )
+            if ((parseFloat(potash.value) + parseFloat(phospo.value) + parseFloat(nitro.value)) < 100.00){
+                props.navigation.navigate('CropDetailScreen',{
+                soilType:props.soil,
+                weatherData:props.weatherData,
+                npk:[parseFloat(potash.value),parseFloat(phospo.value),parseFloat(nitro.value)]
+                })
+                props.setModalVisible(false);
+                props.setSoilFormModalVisible(false)
+                props.setSoil('')
+            }else{
+                alert('Values must add upto below 100')
+            }
+        }        
         return {};
     }
     return <View style={{ flex:1  }}>
@@ -60,7 +72,7 @@ const SoilFormComponentModal = props => {
                     backdropColor={'#292828'}
                     animationOut={'slideOutDown'}
                     animationOutTiming={600}
-                    animationInTiming={400}
+                    animationInTiming={700}
                     animationIn='slideInRight'
                     backdropOpacity={0.5}
                     >
@@ -91,7 +103,7 @@ const SoilFormComponentModal = props => {
                           label="Nitrogen"
                           returnKeyType="next"
                           value={nitro.value}
-                          onChangeText={text => {setNitro({ value: text, error: "" });checErrNitro()}}
+                          onChangeText={text => {setNitro({ value: text, error: "" })}}
                           error={!!nitro.error}
                           errorText={nitro.error}
                           autoCapitalize="none"
@@ -102,7 +114,7 @@ const SoilFormComponentModal = props => {
                           label="Phosophorus"
                           returnKeyType="next"
                           value={phospo.value}
-                          onChangeText={text => {setPhospo({ value: text, error: "" });checErrPhospo()}}
+                          onChangeText={text => {setPhospo({ value: text, error: "" });}}
                           error={phospo.error}
                           errorText={phospo.error}
                           autoCapitalize="none"
@@ -113,7 +125,7 @@ const SoilFormComponentModal = props => {
                           label="Potassium"
                           returnKeyType="next"
                           value={potash.value}
-                          onChangeText={text => {setPotash({ value: text, error: "" });checErrPotash()}}
+                          onChangeText={text => {setPotash({ value: text, error: "" });}}
                           error={!!potash.error}
                           errorText={potash.error}
                           autoCapitalize="none"

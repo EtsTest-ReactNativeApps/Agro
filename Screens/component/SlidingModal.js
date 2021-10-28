@@ -34,7 +34,7 @@ const SlidingModal = props => {
                     style={{alignItems:'center'}}
                     backdropColor={'#292828'}
                     animationOut={statePressed === 'SD'?'slideInLeft':'slideOutDown'}
-                    animationOutTiming={700}
+                    animationOutTiming={600}
                     animationInTiming={400}
                     animationIn='slideInUp'
                     backdropOpacity={0.5}
