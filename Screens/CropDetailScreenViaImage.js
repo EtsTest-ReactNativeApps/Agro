@@ -16,6 +16,7 @@ const CropDetailScreenViaImage = props =>{
     const height=Dimensions.get('screen').height
     const name=props.navigation.getParam('soilType')
     const weatherData = props.navigation.getParam('weatherData')
+    const uri=props.navigation.getParam('uri')
     const [modalVisible,setModalVisible]=useState(false)
     const soil_dict={'Black':0,'Clayey':1,"Loamy":2,"Red":3,"Sandy":4}
     const fetchData = useCallback(()=>{
@@ -128,10 +129,7 @@ const CropDetailScreenViaImage = props =>{
                     borderRadius:20,
                     marginTop:20,
                     overflow:'hidden'}} >
-                    <Image source={name === 'Clayey Soil'?require("./component/clayey.jpeg"):
-                    name === 'Loamy Soil' ? require("./component/loamy.jpeg") :
-                    name === 'Black Soil' ? require("./component/black.jpeg") : 
-                    name === 'Red Soil' ? require("./component/red.jpeg") :null } 
+                    <Image source={{uri:uri} } 
                     style={{width:'100%',height:'100%'}} />             
                 </View>
                 <View style={{height:height*0.1,width:'100%',marginTop:20,

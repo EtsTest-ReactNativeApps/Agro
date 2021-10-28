@@ -137,7 +137,7 @@ const Dashboard = props => {
                       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
                         <Pressable 
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'leaf',data:data})}
-                        style={{width:width*0.45,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                        style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
@@ -147,13 +147,23 @@ const Dashboard = props => {
                           </Pressable>
                           <Pressable 
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'fruit',data:data})}
-                          style={{width:width*0.45,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/fruit.png')} />
                             </View>
                             <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Fruits</Text>
+                          </Pressable>
+                          <Pressable 
+                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'cotton',data:data})}
+                          style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
+                        backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
+                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                          <View style={{width:width*0.14,height:width*0.14}}>
+                              <Image style={{width:'100%',height:'100%'}} source={require('../constants/cotton.png')} />
+                            </View>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Cotton</Text>
                           </Pressable>
                           
                       </View>

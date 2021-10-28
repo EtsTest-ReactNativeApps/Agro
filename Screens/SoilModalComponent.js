@@ -133,61 +133,48 @@ const SoilModalComponent = props => {
         });
       };
     const detectImage = useCallback((image)=>{
-        setTimeout(()=>{
-            props.setSoilModalVisible(false);
-            props.setModalVisible(false)
-            setDetecting(false)
-            props.navigation.navigate('CropDetailScreenViaImage',
-            {uri:'null',weatherData:props.data,soilType:'Black Soil'})
-        },3000)
-    //   try{
-    //     var formdata = new FormData();
-    //     var value = props.name === 'wheat' || props.name === 'rice' || props.name === 'corn' || 
-    //                 props.name === 'leaf' ? 'leaf' : props.name === 'fruit' ? 'fruit' : null
-    //     const data={
-    //       uri:image.uri,
-    //       type:image.type,
-    //       name:image.fileName
-    //     }
-    //     formdata.append("image", data);
-    //     formdata.append("value", value);
-    //     var requestOptions = {
-    //       method: 'POST',
-    //       body: formdata,
-    //       headers:{
-    //         Accept: "application/json",
-    //         "Content-Type": "multipart/form-data"
-    //       },
-    //       redirect: 'follow'
-    //     };
+        
+      try{
+        var formdata = new FormData();
+        const data={
+          uri:image.uri,
+          type:image.type,
+          name:image.fileName
+        }
+        formdata.append("image", data);
+        var requestOptions = {
+          method: 'POST',
+          body: formdata,
+          headers:{
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data"
+          },
+          redirect: 'follow'
+        };
 
-    //     fetch('https://pytorch-annual.herokuapp.com/getPlantNet', requestOptions)
-    //       .then(response => response.json())
-    //       .then(res=>{
-    //           if  (res.result === 'Invalid Image'){
-    //             setDetecting(false)
-    //             props.setPressed(false)
-    //             alert(`This Image is not of a ${props.name}`)
-    //             return {}
-    //           }else{
-    //             return fetch(url, requestOptions)
-    //           }})
-    //         .then(res=>res.json())
-    //         .then(data=>{            
-    //           console.log(data);
-    //           props.navigation.navigate('DetailScreen',{
-    //           uri:image.uri,
-    //           detect:data.result,
-    //           name:props.name})
-    //           props.setPressed(false)
-    //           return {}
-    //       })
-    //     }catch(err){
-    //     console.log('error',err)
-    //     ToastAndroid.show('Error in detecting .')
-    //   }
+        fetch('https://pytorch-annual.herokuapp.com/getSoil', requestOptions)
+          .then(response => response.json())
+          .then(res=>{
+              if  (res.result === 'Invalid Image'){
+                setDetecting(false)
+                props.setSoilModalVisible(false);
+                props.setModalVisible(false)
+                setDetecting(false)
+                alert(`This Image is not of a soil`)
+                return {}
+              }else{
+                props.setSoilModalVisible(false);
+                props.setModalVisible(false)
+                setDetecting(false)
+                props.navigation.navigate('CropDetailScreenViaImage',
+                {uri:image.uri,weatherData:props.data,soilType:`${res.result} Soil`})
+              }})            
+          }catch(err){
+          console.log('error',err)
+          ToastAndroid.show('Error in detecting .')
+        }
 
-    })
+      })
 return      <Modal
             onBackdropPress={()=>{props.setSoilModalVisible(false)}}
             style={{justifyContent:'center',alignItems:'center'}}
