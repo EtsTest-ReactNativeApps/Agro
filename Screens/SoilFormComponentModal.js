@@ -92,7 +92,6 @@ const SoilFormComponentModal = props => {
                 console.log(err)
                 props.setModalVisible(false);
                 props.setSoilFetchingModalVisible(false);
-                throw err
             })
         }catch(err){
             console.log('error',err)

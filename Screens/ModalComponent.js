@@ -150,6 +150,7 @@ const ModalComponent = props => {
           type:image.type,
           name:image.fileName
         }
+        console.log('VAL ',value)
         formdata.append("image", data);
         formdata.append("value", value);
         var requestOptions = {
@@ -165,11 +166,13 @@ const ModalComponent = props => {
         fetch('https://pytorch-annual.herokuapp.com/getPlantNet', requestOptions)
           .then(response => response.json())
           .then(res=>{
+              console.log(res)
               if  (res.result === 'Invalid Image'){
                 setDetecting(false)
                 props.setPressed(false)
                 alert(`This Image is not of a ${props.name}`)
-                return {}
+                throw 'image is not valid'
+                
               }else{
                 return fetch(url, requestOptions)
               }})
@@ -182,21 +185,29 @@ const ModalComponent = props => {
               name:props.name})
               props.setPressed(false)
               return {}
-          })
+            })
+            .catch(err=>{
+              console.log('error',err)
+            })  
         }catch(err){
         console.log('error',err)
-        ToastAndroid.show('Error in detecting .')
+        if (err === 'image is not valid'){
+          ToastAndroid.show('image is not valid.',ToastAndroid.LONG)
+        }else{
+          ToastAndroid.show('Error in detecting .',ToastAndroid.LONG)
+        }
+        return  {}      
       }
 
     })
     return <Modal
             style={{justifyContent:'center',alignItems:'center'}}
-            contentContainerStyle={{width:width*0.75,borderRadius:20,height:height*0.20,backgroundColor:'white',justifyContent:'center',alignItems:'center'}}
+            contentContainerStyle={{width:width*0.75,borderRadius:20,overflow:'hidden',height:height*0.20,backgroundColor:'white',justifyContent:'center',alignItems:'center'}}
                 animationType='slide'
                 transparent={true}
                 visible={modal} 
                 >
-            {!detecting?<View style={{width:width*0.75,height:height*0.20,justifyContent:'flex-start',alignItems:'center'}}>
+            {!detecting?<View style={{width:width*0.35,height:height*0.20,justifyContent:'flex-start',alignItems:'center'}}>
                 <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.25,borderBottomWidth:0.5,borderBottomColor:'#DBD7D7',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Launch Camera</Text>

@@ -1,5 +1,5 @@
 import React,{  useCallback, useEffect, useRef, useState } from "react";
-import { FlatList, Image, PermissionsAndroid, Platform, Text, ToastAndroid } from "react-native";
+import { FlatList, Image, PermissionsAndroid, Platform, ScrollView, Text, ToastAndroid } from "react-native";
 import { Dimensions, Pressable, View } from "react-native";
 import { Modal } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,7 +11,7 @@ import WeatherComponent from "./component/weatherComponent";
 import { RNCamera } from "react-native-camera";
 import ModalComponent from "./ModalComponent";
 
-
+import diseases from './diseasesData'
 const DetailScreen = props =>{
   const width=Dimensions.get('screen').width
     const height=Dimensions.get('screen').height
@@ -74,7 +74,7 @@ const DetailScreen = props =>{
                            marginTop:25,
                            elevation:1,
                            paddingHorizontal:15,
-                           backgroundColor:detect.toLowerCase().includes('healthy')?'#C7F0AF':'#E89F9F',
+                           backgroundColor:detect.toLowerCase().includes('ealthy')?'#C7F0AF':'#E89F9F',
                            justifyContent:'center',
                            alignItems:'center',
                            shadowColor:'black',
@@ -82,20 +82,18 @@ const DetailScreen = props =>{
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
                                <Text style={{fontFamily:'Sora-Regular',letterSpacing:1.3,fontSize:16,
-                               color:detect.toLowerCase().includes('healthy')?'#2A8B31':'#B00000'}}>
-                                 {detect} detection
+                               color:detect.toLowerCase().includes('ealthy')?'#2A8B31':'#B00000'}}>
+                                 {detect.replace(/[()]/g,'').replace(/_/g,' ').replace(/,/g,'')} detection
                                 </Text>
                         </View>                        
                     </View>                      
                 </View>
-                <Text style={{letterSpacing:1,lineHeight:25,fontSize:15,color:'#898989',
-                fontFamily:'Sora-Regular'}}>
-                   Infection begins first on lower leaves and as the season progresses the disease can be 
-                   found in the upper canopy of the plant. 
-                   Lesions may form in bands across leaves as a result of an infection in the whorl. 
-                   The disease is favored by high humidity and moderate temperatures. Under humid 
-                   conditions, lesions may appear dark, and fuzzy because the fungus is sporulating on dead tissues
-                </Text>
+                <ScrollView style={{height:height*0.4,width:'100%'}} showsVerticalScrollIndicator={false}>
+                    <Text style={{letterSpacing:1,lineHeight:25,fontSize:15,color:'#898989',
+                    fontFamily:'Sora-Regular'}}>
+                        {diseases[detect.toLowerCase().replace(/ /g,'_').replace(/,/g,'').replace(/[()]/g,'')]}
+                    </Text>
+                </ScrollView>
               </View>    
             </SafeAreaView>
 }

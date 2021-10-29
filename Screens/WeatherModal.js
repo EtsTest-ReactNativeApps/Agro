@@ -26,6 +26,9 @@ const WeatherModal = props => {
                 props.setData({...result})
                 setLoading(false)
             })
+            .catch(err=>{
+                console.log(err)
+            })
         }catch(err){
             setLoading(false)
             console.log('error',err)
