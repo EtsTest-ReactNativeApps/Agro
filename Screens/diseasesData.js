@@ -45,5 +45,11 @@ export default  diseases = {
     tomato_tomato_yellow_leaf_curl_virus:'Tomato yellow leaf curl virus is not seed-borne. It is only transmitted by the whitefly, Bemisia tabaci, which is commonly found in tropical and sub-tropical regions, and in greenhouses in temperate areas. Plants become severely stunted and shoots become erect. Leaflets are reduced in size and pucker. Leaflets curl upwards, become distorted, and have prominent yellowing along margins and/or interveinal regions. Flowers wither.',
     tomato_tomato_mosaic_virus:'If plants are infected early, they may appear yellow and stunted overall. Mottled light and dark green on leaves.  Leaves may be curled, malformed, or reduced in size.  Spots of dead leaf tissue may become apparent with certain varieties at warm temperatures.',
     tomato_healthy:'The tomato is healthy and disease free',
-
+    tungro:'Rice tungro disease is caused by the combination of two viruses, which are transmitted by leafhoppers. It causes leaf discoloration, stunted growth, reduced tiller numbers and sterile or partly filled grains. Tungro infects cultivated rice, some wild rice relatives and other grassy weeds commonly found in rice paddies.',
+    brownspot:'Cochliobolus miyabeanus (formerly known as Helminthosporium oryzae) is a fungus that causes brown spot disease in rice. This disease was the causal agent of the Bengal famine of 1943.',
+    blast:'Blast is caused by the fungus Magnaporthe oryzae. It can affect all above ground parts of a rice plant: leaf, collar, node, neck, parts of panicle, and sometimes leaf sheath.',
+    bacterialblight:'Rice bacterial blight, also called bacterial blight of rice, deadly bacterial disease that is among the most destructive afflictions of cultivated rice (Oryza sativa and O. glaberrima). In severe epidemics, crop loss may be as high as 75 percent, and millions of hectares of rice are infected annually.',
+    leaf_rust:'Wheat leaf rust is a fungal disease that affects wheat, barley, rye stems, leaves and grains. In temperate zones it is destructive on winter wheat because the pathogen overwinters. Infections can lead up to 20% yield loss, which is exacerbated by dying leaves, which fertilize the fungus',
+    stem_rust:'Stem rust, also known as cereal rust, black rust, red rust or red dust, is caused by the fungus Puccinia graminis, which causes significant disease in cereal crops. ',
+    
 }
