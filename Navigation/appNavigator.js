@@ -15,7 +15,8 @@ import {
     RegisterScreen,
     ForgotPasswordScreen,
     AuthLoadingScreen,
-    Dashboard
+    Dashboard,
+    TeamScreen
   } from "../Auth_Screens";
 
 import { useSelector } from 'react-redux';
@@ -40,6 +41,7 @@ const AppNavigator=createStackNavigator({
     FertiliserRecommender:FertilizerRecommender
     },{headerMode:'none'});
     const AuthNavigator=createStackNavigator({
+        TeamScreen,
         HomeScreen,
         LoginScreen,
         RegisterScreen,
@@ -48,7 +50,7 @@ const AppNavigator=createStackNavigator({
         AuthLoadingScreen,
         Welcome
     },{
-        initialRouteName:'AuthLoadingScreen',
+        initialRouteName:'TeamScreen',
         headerMode:'none'
     });
      const DrawerNavigator=createDrawerNavigator({
