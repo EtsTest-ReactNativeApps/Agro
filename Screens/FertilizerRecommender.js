@@ -11,6 +11,7 @@ import WeatherComponent from "./component/weatherComponent";
 import { RNCamera } from "react-native-camera";
 import ModalComponent from "./ModalComponent";
 import CropComponent from "./component/CropComponent";
+import FilterComponent from "./component/FilterComponent";
 
 
 
@@ -22,11 +23,12 @@ const FertilizerRecommmender = props => {
 
     const extract=useCallback((item,index)=>index,[])
     const render=useCallback(({item})=>
-        <CropComponent 
-            name={item} 
+        <FilterComponent
+            nameMain={item}
+            name={item.replace(/-/g,'')}
              />,[])
     return <SafeAreaView style={{flex:1}}>        
-            <ScrollView contentContainerStyle={{width:width,height:height*0.9,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
+            <ScrollView style={{width:width,height:height}} contentContainerStyle={{backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
                     <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
                         justifyContent:'center',
@@ -64,7 +66,7 @@ const FertilizerRecommmender = props => {
                         Recommended Fertilizer
                     </Text>
                 </View>
-                <CropComponent name={completeData[0]} />
+                <FilterComponent  nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} />
                 <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
                         Similar Fertlizer
@@ -75,7 +77,7 @@ const FertilizerRecommmender = props => {
                 showsVerticalScrollIndicator={false} 
                 numColumns={1} 
                 keyExtractor={extract} 
-                style={{width:width*0.95}} 
+                style={{width:width*0.95,height:height*0.7}} 
                 data={completeData[1]}  
                 renderItem={render} 
                  />
