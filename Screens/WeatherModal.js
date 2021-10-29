@@ -37,8 +37,8 @@ const WeatherModal = props => {
         try{            
             Geolocation.getCurrentPosition({
                 enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge:1000
+                timeout: 20000,
+                
             })
             .then(pos=>{
                 console.log([pos.latitude,pos.longitude])
@@ -92,7 +92,7 @@ const WeatherModal = props => {
                                 <Image source={require('./alert.png')} style={{width:'100%',height:'100%'}} />
                             
                             </View>
-                            <View style={{width:'60%',alignItems:'center'}}>
+                            <View style={{width:'80%',alignItems:'center'}}>
                                 <Text style={{fontSize:16,fontFamily:'Sora-Regular',fontWeight:'200',color:'#3C3A3A'}}>
                                     Can't able to detect location
                                 </Text>

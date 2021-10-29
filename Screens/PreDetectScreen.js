@@ -101,7 +101,7 @@ const PreDetectScreen = props => {
                             justifyContent:'space-between',
                             marginTop:height*0.04}}>
                             <WeatherComponent item={'Humidity'} value={data.current.humidity +'%'} />
-                            <WeatherComponent item={'Ph'} value={'8'} />
+                            <WeatherComponent item={'Sun'} value={data.current.temperature + '°C'} />
                         </View>
                     </View>
                     <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>

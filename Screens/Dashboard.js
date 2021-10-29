@@ -44,7 +44,7 @@ const Dashboard = props => {
                       <View style={{width:width*0.15,height:width*0.15}}>
                         <Image style={{width:'100%',height:'100%'}} source={require('../constants/sprout.png')} />
                       </View>
-                      <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#3C3A3A'}}>Press for crop advisor</Text>
+                      <Text style={{fontFamily:'Sora-Regular',textAlign:'center',fontSize:15,color:'#3C3A3A'}}>Press for crop advisor</Text>
                     </Pressable>
                     <View style={{width:1,height:height*0.18,backgroundColor:'#E5E5E5',marginHorizontal:width*0.03}}>
                       </View>

@@ -1,15 +1,23 @@
 import auth from '@react-native-firebase/auth'
+import { ToastAndroid } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/actions/auth';
 
 export const logoutUser = async (props) => {
-  auth().signOut()
-  .then(res=>{
-    // props.navigation.navigate('HomeScreen')
-    // return {}
-    return 
-  }).catch(err=>{
+  try{
+    
+    auth().signOut()
+    .then(res=>{
+    
+      // props.navigation.navigate('HomeScreen')
+      // return {}
+      
+    })
+    
+  }catch(err){
+    ToastAndroid.show('Error in logging out. Restart App')
     console.log('error',err)
-  });
-  
+  }
 };
 
 export const signInUser = async ({ name, email, password }) => {

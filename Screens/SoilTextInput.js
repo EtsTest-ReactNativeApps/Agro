@@ -5,7 +5,7 @@ import { theme } from "../Auth_Core/theme";
 
 const SoilTextInput = ({ errorText, ...props }) => {
     const {height}=Dimensions.get('screen')
-  return (<View style={{...styles.container,height:props.height,marginVertical:height*0.03}}>
+  return (<View style={{...styles.container,height:props.height,marginVertical:height*0.034}}>
     <Input
       style={{...styles.input}}
       selectionColor={'#8CC63E'}

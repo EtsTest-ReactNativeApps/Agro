@@ -5,11 +5,12 @@ const CropComponent = props => {
     const height = Dimensions.get('screen').height
     
     return <View style={{width:width*0.93 ,shadowColor:'black',alignSelf:'center',
-    shadowOffset:{width:5,height:5},
-    shadowRadius:5,
-    elevation:5,
+    shadowOffset:{width:0,height:4},
+    shadowOpacity:0.1,
+    shadowRadius:4,
+    elevation:1,
     backgroundColor:'white',
-    borderRadius:15,
+    borderRadius:5,
     marginBottom:20,
     height:height*0.08,
     justifyContent:'flex-start'

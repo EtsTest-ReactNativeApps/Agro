@@ -15,7 +15,7 @@ const SlidingModal = props => {
     const renderItem = useCallback(({item})=>
       (<View style={{alignItems:'center',marginRight:15}}>
         <Pressable         
-        style={{width:width*0.3,height:width*0.3,borderRadius:15,overflow:'hidden',
+        style={{width:width*0.25,height:width*0.25,borderRadius:15,overflow:'hidden',
         }}>
           <ImageBackground style={{width:'100%',height:'100%',alignItems:'flex-end'}} source={item.source} >
             {item.type === soil ?<View style={{width:16,height:16,marginRight:10,marginVertical:10}}>

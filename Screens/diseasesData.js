@@ -12,5 +12,18 @@ export default  diseases = {
     blueberry_healthy:'',
     cherry_including_sour_powdery_mildew:'',
     cherry_including_sour_healthy:'',
+    corn_maize_cercospora_leaf_spot_gray_leaf_spot:'',
+    corn_maize_common_rust_:'',
+    corn_maize_northern_leaf_blight:'',
+    corn_maize_healthy:'',
+    grape_black_rot:'',
+    grape_esca_black_measles:'',
+    grape_leaf_blight_isariopsis_leaf_spot:'',
+    grape_healthy:'',
+    orange_haunglongbing_citrus_greening:'',
+    peach_bacterial_spot:'',
+    peach_healthy:'',
+    pepper_bell_bacterial_spot:'',
+    pepper_bell_healthy:'',
 
 }

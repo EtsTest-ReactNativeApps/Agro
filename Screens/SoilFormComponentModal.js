@@ -132,7 +132,7 @@ const SoilFormComponentModal = props => {
                     backdropColor={'#292828'}
                     animationOut={'slideOutDown'}
                     animationOutTiming={600}
-                    animationInTiming={700}
+                    animationInTiming={400}
                     animationIn='slideInRight'
                     backdropOpacity={0.5}
                     >
@@ -155,7 +155,7 @@ const SoilFormComponentModal = props => {
                           shadowRadius:3,
                           shadowOpacity:0.3
                         }}>
-                           <Text style={{fontFamily:'Sora-Regular',textAlign:'center',marginVertical:15,fontWeight:'500',color:'#605959',fontSize:15}}>
+                           <Text style={{fontFamily:'Sora-Regular',textAlign:'center',marginVertical:5,fontWeight:'500',color:'#605959',fontSize:15}}>
                                 {`Fill the ${props.soil} attributes`}
                             </Text>
                           <SoilTextInput
@@ -211,9 +211,9 @@ const SoilFormComponentModal = props => {
                                 overflow:'hidden',
                               width:width*0.95,
                               height:height*0.06,
-                              marginTop:height*0.1,
+                              marginTop:height*0.09,
                               borderRadius:5,                       
-                              elevation:3,
+                              elevation:2,
                               justifyContent:'center',
                               alignItems:'center',
                               backgroundColor:'#8CC63E',

@@ -9,9 +9,8 @@ import { logoutUser } from "../api/auth-api";
 const Dashboard = ({navigation}) => (
   <Background>
     <Logo />
-    <Header>Bourbaki Logout</Header>
     <Paragraph>
-      Your problems need solution come again and rest your pace.
+      We're always here to help you anytime, Please visit again.
     </Paragraph>
     <Button mode="contained" onPress={() => logoutUser()}>
       Logout
