@@ -21,7 +21,7 @@ const Dashboard = props => {
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
     return (<SafeAreaView  style={{flex:1}}>
-              <View style={{width:width,height:height,backgroundColor:'#8CC63E'}}>
+              <ScrollView style={{width:width,height:height,backgroundColor:'#8CC63E'}}>
                 <View style={{width:width,height:width*0.78*(293/414),alignItems:'center'}}>
                   <ImageBackground style={{width:'100%',height:'100%',alignItems:'center',justifyContent:'space-between'}} source={require('../constants/backg.png')}>
                     <View style={{width:width,height:height*0.08,padding:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
@@ -48,7 +48,7 @@ const Dashboard = props => {
                     </Pressable>
                     <View style={{width:1,height:height*0.18,backgroundColor:'#E5E5E5',marginHorizontal:width*0.03}}>
                       </View>
-                    <View style={{height:height*0.15,width:width*0.85*0.45,alignItems:'center',justifyContent:'space-between'}}>
+                    <View style={{height:height*0.15,width:width*0.85*0.45,alignItems:'center',justifyContent:'space-around'}}>
                       <View style={{width:'100%',height:'30%'}}>
                         <View style={{flexDirection:'row',height:height*0.15*0.45}}>
                           <View style={{width:width*0.11,height:width*0.11}}>
@@ -63,12 +63,12 @@ const Dashboard = props => {
                         </View>
                         </View>
                         <View style={{width:'100%',height:'30%'}}>
-                        <View style={{flexDirection:'row',height:height*0.15*0.45}}>
+                        <View style={{flexDirection:'row',height:height*0.15*0.45,}}>
                           <View style={{alignItems:'center'}}>
-                            <View style={{width:width*0.11,height:width*0.11}}>
+                            <View style={{width:width*0.11,height:width*0.11,alignItems:'center',paddingBottom:5}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/sun.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F',paddingBottom:10}}>
                               {temp >=0 || temp <0 ? temp : '--'} °C
                             </Text>
                           </View>
@@ -76,9 +76,9 @@ const Dashboard = props => {
                             <View style={{width:width*0.11,height:width*0.11}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/wind.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>
-                              {wind >=0 || wind<0 ? wind : '--'} mph
-                            </Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F',paddingBottom:10}}>
+                                {wind >=0 || wind<0 ? wind : '--'} mph
+                              </Text>
                           </View>
                         </View>                          
                         </View>
@@ -171,7 +171,7 @@ const Dashboard = props => {
                       </View>
                     </View>                  
                 </View>
-              </View>
+              </ScrollView>
 
               <WeatherModal 
               setWind={setWind} 
