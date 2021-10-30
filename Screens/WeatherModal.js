@@ -40,15 +40,44 @@ const WeatherModal = props => {
         try{            
             Geolocation.getCurrentPosition({
                 enableHighAccuracy: true,
-                timeout: 20000,
-                
+                timeout: 25000, 
             })
-            .then(pos=>{
-                console.log([pos.latitude,pos.longitude])
-                return fetchData([pos.latitude,pos.longitude])
+            .then((pos)=>{
+                if (!pos.latitude){
+                    var requestOptions = {
+                        method: 'GET',
+                        redirect: 'follow'
+                      };         
+                    fetch("https://pytorch-annual.herokuapp.com/getCoord", requestOptions)
+                    .then(res=>res.json())
+                    .then(pos=>{
+                        console.log([pos.coordinates[0],pos.coordinates[1]])
+                        return fetchData([pos.coordinates[0],pos.coordinates[1]])
+                    })
+                    .catch(err=>{
+                        setErr(err)
+                        console.log('error',err)                
+                    })
+                }else{
+                    console.log([pos.coordinates[0],pos.coordinates[1]])
+                    return fetchData([pos.coordinates[0],pos.coordinates[1]])
+                }                
             })
             .catch(err=>{
-                setErr(err)
+                var requestOptions = {
+                    method: 'GET',
+                    redirect: 'follow'
+                  };         
+                fetch("https://pytorch-annual.herokuapp.com/getCoord", requestOptions)
+                .then(res=>res.json())
+                .then(pos=>{
+                    console.log([pos.coordinates[0],pos.coordinates[1]])
+                    return fetchData([pos.coordinates[0],pos.coordinates[1]])
+                })
+                .catch(err=>{
+                    setErr(err)
+                    console.log('error',err)                
+                })
                 console.log('error',err)                
             })
             

@@ -48,7 +48,7 @@ const RegisterScreen = ({ navigation }) => {
       setError(response.error);
     }
     if (!response){
-      navigation.navigate('LoginScreen');
+      navigation.navigate('ImagePicker');
     }
     setLoading(false);
   };

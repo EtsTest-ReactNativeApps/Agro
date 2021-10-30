@@ -4,12 +4,13 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   View,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from "react-native";
 import Colors from "../constants/Colors";
 
 const ImgBackground = ({ children }) => (
-  <View style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height,backgroundColor:'white'}}>
+  <ScrollView style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height,backgroundColor:'white'}}>
     <ImageBackground
      resizeMode='cover'
       style={styles.background}
@@ -19,7 +20,7 @@ const ImgBackground = ({ children }) => (
       {children}
     </KeyboardAvoidingView>
   </ImageBackground>
-  </View>
+  </ScrollView>
 );
 
 const styles = StyleSheet.create({
