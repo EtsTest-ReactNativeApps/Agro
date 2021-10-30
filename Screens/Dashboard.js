@@ -135,7 +135,7 @@ const Dashboard = props => {
                           </Pressable>
                       </View>
                       
-                      <Text style={{fontFamily:'Sora-Regular',fontSize:14,marginTop:15,color:'#615E5E'}}>Leafes {'&'} Fruits</Text>
+                      <Text style={{fontFamily:'Sora-Regular',fontSize:14,marginTop:15,color:'#615E5E'}}>Leaves {'&'} Fruits</Text>
                       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
                         <Pressable 
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'leaf',data:data})}
@@ -145,7 +145,7 @@ const Dashboard = props => {
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/leaf.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Leafes</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Leaves</Text>
                           </Pressable>
                           <Pressable 
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'fruit',data:data})}
