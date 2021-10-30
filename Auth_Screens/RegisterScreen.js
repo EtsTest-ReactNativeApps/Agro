@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Background from "../Auth_Components/Background";
+import ImgBackground from "../Auth_Components/ImageBackground";
 import Logo from "../Auth_Components/Logo";
 import Header from "../Auth_Components/Header";
 import Button from "../Auth_Components/Button";
@@ -54,7 +54,7 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   return (
-    <Background>
+    <ImgBackground>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
       <Logo />
@@ -111,7 +111,7 @@ const RegisterScreen = ({ navigation }) => {
       </View>
 
       <Toast message={error} onDismiss={() => setError("")} />
-    </Background>
+    </ImgBackground>
   );
 };
 

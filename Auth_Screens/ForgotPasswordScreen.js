@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { emailValidator } from "../Auth_Core/utils";
-import Background from "../Auth_Components/Background";
+import ImgBackground from "../Auth_Components/ImageBackground";
 import BackButton from "../Auth_Components/BackButton";
 import Logo from "../Auth_Components/Logo";
 import Header from "../Auth_Components/Header";
@@ -43,7 +43,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
   };
 
   return (
-    <Background>
+    <ImgBackground>
       <BackButton goBack={() => navigation.navigate("LoginScreen")} />
 
       <Logo />
@@ -84,7 +84,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
         message={toast.value}
         onDismiss={() => setToast({ value: "", type: "" })}
       />
-    </Background>
+    </ImgBackground>
   );
 };
 
