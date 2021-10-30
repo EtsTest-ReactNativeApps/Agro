@@ -5,7 +5,7 @@ import Header from "../Auth_Components/Header";
 import Button from "../Auth_Components/Button";
 import Paragraph from "../Auth_Components/Paragraph";
 import { theme } from "../Auth_Core/theme";
-import {View,Pressable,Text, Dimensions} from 'react-native'
+import {View,Pressable,Text, Dimensions,Image} from 'react-native'
 
 const HomeScreen = ({ navigation }) => (
   <Background>
@@ -24,6 +24,14 @@ const HomeScreen = ({ navigation }) => (
       >
         Sign Up
       </Button>
+    </View>
+    <View style={{alignItems:'center',padding:5,marginTop:25}}>
+      <Text style={{fontWeight:'bold',marginBottom:5}}> Powered by</Text>
+      <Image
+        source = {require('../constants/pytorch.png')}
+        style = {{width:80,height:80}}
+        resizeMode = 'contain'
+      />
     </View>
     {/* <View style={{width:'100%',borderRadius:50,borderColor:theme.colors.primary,
     borderWidth:2,
