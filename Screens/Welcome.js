@@ -13,7 +13,7 @@ const Welcome = ({ navigation }) => {
         title: "Agro App",
         description: "Exclusively for Agriculture and Farming",
         id: 1,
-        src: require('../constants/agricultural.png')
+        src: require('../constants/slider1.png')
     });
     
     
@@ -75,19 +75,19 @@ const Welcome = ({ navigation }) => {
             id: 1,
             title: "Agro App",
             description: "Exclusively for Agriculture and Farming",
-            src: require('../constants/agricultural.png')
+            src: require('../constants/slider1.png')
         },
         2:{
             id: 2,
-            title: "Advises on the welfare of your crops and farms ",
+            title: "Advice for your crops and farms ",
             description: "Get acquianted with right information",
-            src: require('../constants/rice.png')
+            src: require('../constants/slider2.png')
         },
         3:{
             id: 3,
-            title: "100% Free to Access",
-            description: "",
-            src: require('../constants/natural.png')
+            title: "Detect crop diseases",
+            description: "Upload crop images to detect the disease",
+            src: require('../constants/farming.png')
         },
     };
 
@@ -107,29 +107,32 @@ const Welcome = ({ navigation }) => {
         moveAhead();
     };
 
+    function getScreenStyle(id){
+        let styleList=[styles.screenBg1,styles.screenBg2,styles.screenBg3]
+        return styleList[id-1];
+    }
     return (
-        <View style={styles.root}>
-            
+        <View style={[styles.root,getScreenStyle(activeState.id)]}>
             <GestureRecognizer
                 style={styles.imageContainer}
                 onSwipeRight={onSwipeRight}
                 onSwipeLeft={onSwipeLeft}
             >
                 <Image source={activeState.src} style={styles.img} />
-            <View style={styles.title}>
-                <Text style={{ textAlign: "center",fontWeight:'bold' ,fontSize: 20}}>
-                    {activeState.title}
-                </Text>
-                <Text style={{ textAlign: "center", color: "#F16943",marginTop:15}}>
-                    {activeState.description}
-                </Text>
-            </View>
-        </GestureRecognizer>
+                <View style={styles.title}>
+                    <Text style={{ textAlign: "center",fontWeight:'bold',color:'black',fontSize: 20}}>
+                        {activeState.title}
+                    </Text>
+                    <Text style={{ textAlign: "center", color: "black",marginTop:15}}>
+                        {activeState.description}
+                    </Text>
+                </View>
+            </GestureRecognizer>
             <View style={styles.footer}>
                 <View style={styles.routeContainer}>
                     <View>
                         <TouchableOpacity onPress={skip} style={styles.skipButton}>
-                            <Text style={{ color: "rgba(65, 37, 73, 0.5)", fontSize: 15 }}>
+                            <Text style={{ color: "rgba(65, 37, 73, 0.7)", fontSize: 15 }}>
                                 SKIP
                             </Text>
                         </TouchableOpacity>
@@ -165,7 +168,15 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems:'center',
-        marginTop: 20
+    },
+    screenBg1:{
+        backgroundColor:'#39ff14'
+    },
+    screenBg2:{
+        backgroundColor:'#00ff7f'
+    },
+    screenBg3:{
+        backgroundColor:'#009e60'
     },
     title: {
         marginVertical: 20
@@ -200,17 +211,18 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     activeIndicator: {
-        width: 16,
-        height: 7,
+        width: 8,
+        height: 8,
+        marginHorizontal:2,
         borderRadius: 10,
-        backgroundColor: "#F16943"
+        backgroundColor: "black"
     },
     indicator: {
         width: 8,
         height: 8,
         marginHorizontal: 2,
         borderRadius: 10,
-        backgroundColor: "rgba(241, 105, 67, 0.2)"
+        backgroundColor: "rgba(0, 0, 0, 0.2)"
     },
     indicatorContainer: {
         display: "flex",
