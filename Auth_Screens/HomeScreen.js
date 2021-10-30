@@ -9,7 +9,7 @@ import {View,Pressable,Text, Dimensions} from 'react-native'
 
 const HomeScreen = ({ navigation }) => (
   <Background>
-    <View style={{marginTop:Dimensions.get('screen').height*0.1}}>
+    <View style={{marginTop:Dimensions.get('screen').height*0.05}}>
       <Logo />
     </View>
     {/* <Text style={{color:theme.colors.primary,fontSize:25,fontWeight:'bold'}} >Pampas Login</Text> */}
