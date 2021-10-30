@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     screenBg1:{
-        backgroundColor:'#90D58C'
+        backgroundColor:'#C7F0AF'
     },
     screenBg2:{
         backgroundColor:'#5BE2BC'
