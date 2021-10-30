@@ -13,7 +13,7 @@ const ImgBackground = ({ children }) => (
     <ImageBackground
      resizeMode='cover'
       style={styles.background}
-      source={require("../constants/AuthBg.jpg")}
+      source={require("../constants/AuthBg.png")}
     >
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       {children}
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width:Dimensions.get('screen').width,
-    height:Dimensions.get('screen').height
+    height:Dimensions.get('screen').height,
+    
   },
   container: {
     flex: 1,

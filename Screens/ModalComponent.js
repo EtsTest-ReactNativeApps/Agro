@@ -17,7 +17,8 @@ const ModalComponent = props => {
     props.name === 'corn' ?'https://pytorch-annual3.herokuapp.com/getCorn' : 
     props.name === 'leaf' ? 'https://pytorch-annual.herokuapp.com/getLeafDisease' :
     props.name === 'fruit' ? 'https://pytorch-annual.herokuapp.com/getLeafDisease' : 
-    props.name === 'cotton' ? 'https://pytorch-annual.herokuapp.com/getCotton' : null    
+    props.name === 'cotton' ? 'https://pytorch-annual.herokuapp.com/getCotton' : 
+    props.name === 'okra' ? 'https://pytorch-annual.herokuapp.com/getYellow' : null    
 
     const [continuePressed,setContinuePressed]=useState(false)
     const requestCameraPermission = async () => {
@@ -144,7 +145,7 @@ const ModalComponent = props => {
         var formdata = new FormData();
         var value = props.name === 'wheat' || props.name === 'rice' || props.name === 'corn' || 
                     props.name === 'leaf' ? 'leaf' : props.name === 'fruit' ? 'fruit' : 
-                    props.name === 'cotton' ? 'leaf':null
+                    props.name === 'cotton' ? 'leaf':props.name === 'okra' ? 'leaf':null
         const data={
           uri:image.uri,
           type:image.type,

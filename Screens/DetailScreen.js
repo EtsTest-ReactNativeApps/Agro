@@ -62,7 +62,8 @@ const DetailScreen = props =>{
                                 name === 'corn' ? require("../constants/corn.png") : 
                                 name === 'leaf' ? require("../constants/leaf.png") :
                                 name === 'fruit' ? require("../constants/fruit.png") :
-                                name === 'cotton' ? require("../constants/cotton.png") :null } 
+                                name === 'cotton' ? require("../constants/cotton.png") :
+                                name === 'okra' ? require("../constants/okra.png"):null } 
                                 style={{width:'100%',height:'100%'}}/>
                             </View>
                     </View>     

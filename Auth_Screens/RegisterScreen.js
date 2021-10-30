@@ -57,7 +57,10 @@ const RegisterScreen = ({ navigation }) => {
     <ImgBackground>
       <BackButton goBack={() => navigation.navigate("HomeScreen")} />
 
-      <Logo />
+      <View style={{width: 200,height: 200,borderBottomLeftRadius:15,overflow:'hidden',
+        borderBottomRightRadius:15}}>
+      {/* <Image source={require('../Auth_assets/logo.png')} style={styles.image} /> */}
+      </View>
 
       <Header>Create Account</Header>
 

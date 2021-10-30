@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 import { emailValidator } from "../Auth_Core/utils";
 import ImgBackground from "../Auth_Components/ImageBackground";
 import BackButton from "../Auth_Components/BackButton";
@@ -46,7 +46,10 @@ const ForgotPasswordScreen = ({ navigation }) => {
     <ImgBackground>
       <BackButton goBack={() => navigation.navigate("LoginScreen")} />
 
-      <Logo />
+      <View style={{width: 200,height: 200,borderBottomLeftRadius:15,overflow:'hidden',
+        borderBottomRightRadius:15}}>
+      {/* <Image source={require('../Auth_assets/logo.png')} style={styles.image} /> */}
+      </View>
 
       <Header>Restore Password</Header>
 
