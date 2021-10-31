@@ -90,7 +90,7 @@ const SoilModalComponent = props => {
             console.log('fileName -> ', response.assets[0].fileName);
             // props.navigation.navigate('DetailScreen',{uri:response.assets[0].uri})
             setDetecting(true)
-            detectImage(response.assets[0].uri)
+            detectImage(response.assets[0])
             return {}
           });
         }
@@ -156,7 +156,6 @@ const SoilModalComponent = props => {
           .then(response => response.json())
           .then(res=>{
               if  (res.result === 'Invalid Image'){
-                setDetecting(false)
                 props.setSoilModalVisible(false);
                 props.setModalVisible(false)
                 setDetecting(false)
@@ -171,12 +170,19 @@ const SoilModalComponent = props => {
               }})            
           }catch(err){
           console.log('error',err)
+          props.setSoilModalVisible(false);
+          props.setModalVisible(false)
+          setDetecting(false)
           ToastAndroid.show('Error in detecting .')
         }
 
       })
 return      <Modal
-            onBackdropPress={()=>{props.setSoilModalVisible(false)}}
+            onBackdropPress={()=>{
+              props.setSoilModalVisible(false);
+              props.setSoilModalVisible(false);
+              props.setModalVisible(false)
+              setDetecting(false)}}
             style={{justifyContent:'center',alignItems:'center'}}
             isVisible={props.soilModalVisible}
             hasBackdrop={true}

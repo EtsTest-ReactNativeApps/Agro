@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { FlatList, Image, PermissionsAndroid, Platform, Text, ToastAndroid } from "react-native";
+import { FlatList, Image, PermissionsAndroid, Platform, ScrollView, Text, ToastAndroid } from "react-native";
 import { Dimensions, Pressable, View } from "react-native";
 import { Modal } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,7 +20,7 @@ const PreDetectScreen = props => {
     const data=props.navigation.getParam('data')
     const [pressed,setPressed]=useState(false)
     return <SafeAreaView style={{flex:1}}>        
-            <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
+            <ScrollView style={{width:width,height:height*1.2,backgroundColor:'#F8F8F8'}} contentContainerStyle={{alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
                     <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
                         justifyContent:'center',
@@ -142,7 +142,7 @@ const PreDetectScreen = props => {
                               </Text>
                       </Pressable>
                     </View>   
-                </View> 
+                </ScrollView> 
                 {pressed?
                 <ModalComponent 
                 name={name} 

@@ -78,15 +78,19 @@ const ModalComponent = props => {
     
             if (response.didCancel) {
               alert('User cancelled camera picker');
+              props.setPressed(false)
               return;
             } else if (response.errorCode == 'camera_unavailable') {
               alert('Camera not available on device');
+              props.setPressed(false)
               return;
             } else if (response.errorCode == 'permission') {
               alert('Permission not satisfied');
+              props.setPressed(false)
               return;
             } else if (response.errorCode == 'others') {
               alert(response.errorMessage);
+              props.setPressed(false)
               return;
             }
             console.log('base64 -> ', response.assets[0].base64);
@@ -98,7 +102,7 @@ const ModalComponent = props => {
             console.log('fileName -> ', response.assets[0].fileName);
             // props.navigation.navigate('DetailScreen',{uri:response.assets[0].uri})
             setDetecting(true)
-            detectImage(response.assets[0].uri)
+            detectImage(response.assets[0])
             return {}
           });
         }
@@ -116,15 +120,19 @@ const ModalComponent = props => {
     
           if (response.didCancel) {
             alert('User cancelled camera picker');
+            props.setPressed(false)
             return;
           } else if (response.errorCode == 'camera_unavailable') {
             alert('Camera not available on device');
+            props.setPressed(false)
             return;
           } else if (response.errorCode == 'permission') {
             alert('Permission not satisfied');
+            props.setPressed(false)
             return;
           } else if (response.errorCode == 'others') {
             alert(response.errorMessage);
+            props.setPressed(false)
             return;
           }
           console.log('base64 -> ', response.assets[0].base64);
@@ -179,15 +187,18 @@ const ModalComponent = props => {
               }})
             .then(res=>res.json())
             .then(data=>{            
-              console.log(data);
+              console.log(data);              
               props.navigation.navigate('DetailScreen',{
               uri:image.uri,
               detect:data.result,
               name:props.name})
+              setDetecting(false)
               props.setPressed(false)
               return {}
             })
             .catch(err=>{
+              setDetecting(false)
+              props.setPressed(false)
               console.log('error',err)
             })  
         }catch(err){
@@ -217,7 +228,8 @@ const ModalComponent = props => {
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Upload from Gallery</Text>
                 </Pressable>
-                <Pressable onPress={()=>{setModal(false)}} android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.25*0.2,borderBottomColor:'grey',
+                <Pressable onPress={()=>{setModal(false);setDetecting(false);props.setPressed(false)}} 
+                android_ripple={{color:'grey'}} style={{width:width*0.9,height:height*0.3*0.25,borderBottomColor:'grey',
                 justifyContent:'center',alignItems:'center'}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#313131'}}>Cancel</Text>
                 </Pressable>

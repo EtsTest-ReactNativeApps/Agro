@@ -108,14 +108,15 @@ const WeatherModal = props => {
           })
         console.log('here2')
         console.log(permission)
-        location = await RNLocation.getLatestLocation({timeout: 5000})
+        location = await RNLocation.getLatestLocation({timeout: 30000})
         console.log(location, location.longitude, location.latitude, 
            location.timestamp)
-        if (location){
-            return fetchData([location.latitude,location.longitude])
+        if (!location){
+            alert('Please on GPS.')
+            return {}
+            
         }else{
-            setErr('Please on GPS.')
-            return
+            return fetchData([location.latitude,location.longitude])
         }
         
      
