@@ -27,8 +27,8 @@ const FertilizerComponent = props => {
                 </View>
                 <View>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:13,marginTop:height*0.015,color:'#9F9F9F'}}>
-                        starts from  <Text style={{fontFamily:'Sora-SemiBold',marginLeft:5,fontSize:15,marginTop:height*0.015,color:'#313131'}}>
-                            $ 4 
+                        starts from <Text style={{fontFamily:'Sora-SemiBold',marginLeft:5,fontSize:15,marginTop:height*0.015,color:'#313131'}}>
+                            {'$'+props.price} 
                         </Text>
                         
                     </Text>
@@ -37,7 +37,7 @@ const FertilizerComponent = props => {
             <Pressable onPress={()=>setVisible(!visible)} style={{paddingHorizontal:5,justifyContent:'center',alignItems:'center',borderRadius:5,height:height*0.15*0.25,paddingVertical:3,
             backgroundColor:'#008AF5',shadowColor:'black',shadowOffset:{width:5,height:5},
             shadowRadius:10,elevation:5}}>
-                <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'white'}}>{visible?'Hide Details':'View Details'}</Text>
+                <Text style={{fontFamily:'Sora-Regular',fontSize:11,color:'white'}}>{visible?'Hide Details':'View Details'}</Text>
             </Pressable>
         </View>
         <View style={{width:width*.9,marginTop:height*0.01*0.05,alignItems:'center',flexDirection:'row',justifyContent:'flex-end'}}>
@@ -52,8 +52,7 @@ const FertilizerComponent = props => {
                 </View>
             </View> */}
            <View style={{width:height*0.15*0.4,height:height*0.15*0.4,alignItems:'center',justifyContent:'center'}}>
-                <Pressable onPress={()=>Linking.openURL()} 
-                    style={{width:height*0.18*0.25,height:height*0.18*0.25}}>
+                <Pressable onPress={()=>Linking.openURL(props.url)} style={{width:height*0.18*0.25,height:height*0.18*0.25}}>
                     <Image source={require('../../constants/buy.png')} style={{width:'100%',height:'100%'}} />
                 </Pressable>
             </View>

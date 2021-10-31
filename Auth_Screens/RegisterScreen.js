@@ -14,6 +14,7 @@ import {
 } from "../Auth_Core/utils";
 import { signInUser } from "../api/auth-api";
 import Toast from "../Auth_Components/Toast";
+import { authenticate } from "../store/actions/auth";
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState({ value: "", error: "" });
@@ -48,7 +49,11 @@ const RegisterScreen = ({ navigation }) => {
       setError(response.error);
     }
     if (!response){
-      navigation.navigate('AuthLoadingScreen');
+      const response2 = await loginUser({
+        email: email.value,
+        password: password.value
+      });
+      return {}
     }
     setLoading(false);
   };

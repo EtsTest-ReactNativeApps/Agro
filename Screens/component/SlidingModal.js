@@ -6,8 +6,11 @@ import Modal from "react-native-modal";
 
 const SlidingModal = props => {
     const {width,height}=Dimensions.get('screen')
-    const data=[{source:require('./clayey.jpeg'),type:'Clayey Soil'},{source:require('./red.jpeg'),type:'Red Soil'},
-                {source:require('./loamy.jpeg'),type:'Loamy Soil'},{source:require('./black.jpeg'),type:'Black Soil'}]
+    const data=[{source:require('./clayey.jpeg'),type:'Clayey Soil'},
+                {source:require('./red.jpeg'),type:'Red Soil'},
+                {source:require('./sandy.jpeg'),type:'Sandy Soil'},
+                {source:require('./loamy.jpeg'),type:'Loamy Soil'},
+                {source:require('./black.jpeg'),type:'Black Soil'}]
     console.log('MODAL ->',props.modalVisible)
     const [statePressed,setStatePressed]=useState('SG')
     const [soil,setSoil]=useState('')

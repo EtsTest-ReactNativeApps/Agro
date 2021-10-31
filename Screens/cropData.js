@@ -1,7 +1,7 @@
 export default crops = {
-        rice:{image:require('../constants/rice.jpg'),price:'$11',URL:'https://www.amazon.com/s?k=rice+seeds&ref=nb_sb_noss_2'},
-        maize:{image:require('../constants/corn.jpg'),URL:'https://www.amazon.com/s?k=maize+seeds&ref=nb_sb_noss',price:'$16'},
-        chickpea:{image:require('../constants/chickpea.jpg'),URL:'https://www.amazon.com/s?k=chickpea+seeds&ref=nb_sb_noss',price:'$8'},
+        rice:{image:require('../constants/rice1.jpg'),price:'$11',URL:'https://www.amazon.com/s?k=rice+seeds&ref=nb_sb_noss_2'},
+        maize:{image:require('../constants/corn1.jpg'),URL:'https://www.amazon.com/s?k=maize+seeds&ref=nb_sb_noss',price:'$16'},
+        chickpea:{image:require('../constants/chickpea1.jpg'),URL:'https://www.amazon.com/s?k=chickpea+seeds&ref=nb_sb_noss',price:'$8'},
         kidneybeans:{image:require('../constants/kidney.jpg'),URL:'https://www.amazon.com/s?k=kidneybeans+seeds&ref=nb_sb_noss_2',price:'$16'},
         pigeonpeas:{image:require('../constants/pigeonPeas.jpg'),URL:'https://www.amazon.com/s?k=pigeon+peas+seeds&ref=nb_sb_noss_2',price:'$12'},
         mothbeans:{image:require('../constants/mothbeans.jpg'),URL:'https://www.amazon.com/s?k=mothbeans&ref=nb_sb_noss',price:'$17'},
@@ -18,7 +18,7 @@ export default crops = {
         orange:{image:require('../constants/orange.jpg'),URL:'https://www.fast-growing-trees.com/collections/shop?type=product&q=orange&undefined=undefined',price:'$48'},
         papaya:{image:require('../constants/papaya.jpg'),URL:'https://www.fast-growing-trees.com/collections/shop?type=product&q=papaya&undefined=undefined',price:'$75'},
         coconut:{image:require('../constants/coconut.jpg'),URL:'https://www.fast-growing-trees.com/collections/shop?type=product&q=coconut&undefined=undefined',price:'$70'},
-        cotton:{image:require('../constants/cotton.jpg'),URL:'https://www.mrcseeds.com/buy-cotton-seeds-online/',price:'$11'}, 
+        cotton:{image:require('../constants/cotton1.jpg'),URL:'https://www.mrcseeds.com/buy-cotton-seeds-online/',price:'$11'}, 
         jute:{image:require('../constants/jute.jpg'),URL:'https://www.amazon.com/jute-seeds/s?k=jute+seeds',price:'$10'},
         coffee:{image:require('../constants/coffee.jpg'),URL:'https://www.fast-growing-trees.com/collections/shop?type=product&q=coffee&undefined=undefined',price:'$35'},
     }

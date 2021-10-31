@@ -23,12 +23,11 @@ const Drawer = props => {
                 shadowRadius:10,
                 elevation:5,
                 alignItems:'center'}}>
-                <Text style={{fontFamily:'Sora-SemiBold',fontSize:28,color:'#8CC63E'}}>{user.email.substring(0,1)}</Text>
+                <Text style={{fontFamily:'Sora-SemiBold',fontSize:25,color:'#8CC63E'}}>{user.email.toUpperCase().substring(0,1)}</Text>
                 </View>
                 <View style={{flexDirection:'row',width:'90%',justifyContent:'flex-start',alignItems:'center'}}>
-                    <Text style={{fontFamily:'Sora-SemiBold',fontSize:15,color:'white'}}> Name - 
-                        <Text numberOfLines={1} style={{fontFamily:'Sora-Regular',letterSpacing:1,fontSize:15,color:'white'}}>
-                            {" "+user.name.toUpperCase()}
+                    <Text style={{fontFamily:'Sora-SemiBold',fontSize:13,color:'white'}}> Email -  <Text numberOfLines={1} style={{fontFamily:'Sora-Regular',letterSpacing:1,fontSize:15,color:'white'}}>
+                            {user.email}
                          </Text> 
                     </Text>
                 

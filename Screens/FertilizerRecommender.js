@@ -28,9 +28,13 @@ const FertilizerRecommmender = props => {
         //     nameMain={item}
         //     name={item.replace(/-/g,'')}
         //      />
-        <FertilizerComponent 
-            nameMain={item}
-            name={item.replace(/-/g,'')} />
+        {   const obj = JSON.parse(item.replace(/'/g, '"'))
+            console.log(obj)
+            return <FertilizerComponent
+            url={obj.shop} 
+            price={obj.price}
+            nameMain={obj.fertilizer}
+            name={obj.fertilizer.replace(/-/g,'')} />}
              ,[])
     return <SafeAreaView style={{flex:1}}>        
             <ScrollView style={{width:width,height:height}} contentContainerStyle={{backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
@@ -72,7 +76,7 @@ const FertilizerRecommmender = props => {
                     </Text>
                 </View>
                 {/* <FilterComponent  nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} /> */}
-                <FertilizerComponent nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} />
+                <FertilizerComponent nameMain={completeData[0].fertilizer} url={completeData[0].shop} price={completeData[0].price} name={completeData[0].fertilizer.replace(/-/g,'_')} />
                 <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
                         Similar Fertlizer
