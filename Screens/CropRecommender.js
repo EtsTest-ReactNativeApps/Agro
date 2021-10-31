@@ -11,6 +11,7 @@ import WeatherComponent from "./component/weatherComponent";
 import { RNCamera } from "react-native-camera";
 import ModalComponent from "./ModalComponent";
 import CropComponent from "./component/CropComponent";
+import CropNewComponent from "./component/CropNewComponent";
 
 
 
@@ -22,7 +23,7 @@ const CropRecommender = props => {
 
     const extract=useCallback((item,index)=>index,[])
     const render=useCallback(({item})=>
-        <CropComponent 
+        <CropNewComponent
             name={item} 
              />,[])
     return <SafeAreaView style={{flex:1}}>
@@ -66,7 +67,7 @@ const CropRecommender = props => {
                             Recommended Crop
                         </Text>
                     </View>
-                    <CropComponent name={completeData[0]} />
+                    <CropNewComponent  name={completeData[0]} />
                     <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                         <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
                             Similar Crops

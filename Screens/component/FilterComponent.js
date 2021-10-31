@@ -4,7 +4,9 @@ import fertiliserData from "../fertiliserData";
 const FilterComponent = props => {
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height
-    const [visible,setVisible]=useState(false)
+    const [visible,setVisible]=useState(false)   
+
+
     return <View style={{width:width*0.93 ,shadowColor:'black',alignSelf:'center',
     shadowOffset:{width:0,height:4},
     shadowOpacity:0.1,

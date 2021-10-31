@@ -98,7 +98,7 @@ const Dashboard = props => {
                   borderTopLeftRadius:25,
                   borderTopRightRadius:25}}>
                     <View style={{marginTop:height*0.11}}>
-                      <Text style={{fontFamily:'Sora-Bold',marginBottom:25,marginTop:10,textAlign:'left',fontSize:18,color:'#544F4F'}}>
+                      <Text style={{fontFamily:'Sora-SemiBold',marginBottom:25,marginTop:10,textAlign:'left',fontSize:18,color:'#544F4F'}}>
                         Detect Disease
                       </Text>
                       <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#615E5E'}}>Plants</Text>

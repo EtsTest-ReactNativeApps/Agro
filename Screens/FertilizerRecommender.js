@@ -12,6 +12,7 @@ import { RNCamera } from "react-native-camera";
 import ModalComponent from "./ModalComponent";
 import CropComponent from "./component/CropComponent";
 import FilterComponent from "./component/FilterComponent";
+import FertilizerComponent from "./component/FertilizerComponent";
 
 
 
@@ -23,10 +24,14 @@ const FertilizerRecommmender = props => {
 
     const extract=useCallback((item,index)=>index,[])
     const render=useCallback(({item})=>
-        <FilterComponent
+        // <FilterComponent
+        //     nameMain={item}
+        //     name={item.replace(/-/g,'')}
+        //      />
+        <FertilizerComponent 
             nameMain={item}
-            name={item.replace(/-/g,'')}
-             />,[])
+            name={item.replace(/-/g,'')} />
+             ,[])
     return <SafeAreaView style={{flex:1}}>        
             <ScrollView style={{width:width,height:height}} contentContainerStyle={{backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
@@ -66,7 +71,8 @@ const FertilizerRecommmender = props => {
                         Recommended Fertilizer
                     </Text>
                 </View>
-                <FilterComponent  nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} />
+                {/* <FilterComponent  nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} /> */}
+                <FertilizerComponent nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} />
                 <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
                         Similar Fertlizer

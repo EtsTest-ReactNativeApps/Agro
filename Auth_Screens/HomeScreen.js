@@ -9,7 +9,9 @@ import {View,Pressable,Text, Dimensions,Image} from 'react-native'
 
 const HomeScreen = ({ navigation }) => (
   <Background>
-    <View style={{marginTop:Dimensions.get('screen').height*0.05}}>
+    <View style={{width:'100%',height:'100%',justifyContent:'space-evenly'}}>
+      <View>
+    <View style={{marginTop:Dimensions.get('screen').height*0.05,width:Dimensions.get('screen').width*0.7,alignItems:'center'}}>
       <Logo />
     </View>
     {/* <Text style={{color:theme.colors.primary,fontSize:25,fontWeight:'bold'}} >Pampas Login</Text> */}
@@ -25,6 +27,7 @@ const HomeScreen = ({ navigation }) => (
         Sign Up
       </Button>
     </View>
+    </View>
     <View style={{alignItems:'center',padding:5,marginTop:25}}>
       <Text style={{fontWeight:'bold',marginBottom:5}}> Powered by</Text>
       <Image
@@ -32,6 +35,7 @@ const HomeScreen = ({ navigation }) => (
         style = {{width:80,height:80}}
         resizeMode = 'contain'
       />
+    </View>
     </View>
     {/* <View style={{width:'100%',borderRadius:50,borderColor:theme.colors.primary,
     borderWidth:2,
