@@ -21,7 +21,7 @@ const Dashboard = props => {
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
     return (<SafeAreaView  style={{flex:1}}>
-              <ScrollView style={{width:width,height:height,backgroundColor:'#8CC63E'}}>
+              <ScrollView style={{width:width,height:height*1.2,backgroundColor:'#8CC63E'}}>
                 <View style={{width:width,height:width*0.78*(293/414),alignItems:'center'}}>
                   <ImageBackground style={{width:'100%',height:'100%',alignItems:'center',justifyContent:'space-between'}} source={require('../constants/backg.png')}>
                     <View style={{width:width,height:height*0.08,padding:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
