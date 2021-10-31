@@ -151,8 +151,18 @@ const SoilModalComponent = props => {
           },
           redirect: 'follow'
         };
-
-        fetch('https://pytorch-annual.herokuapp.com/getSoil', requestOptions)
+        fetch('https://pytorch-annual4.herokuapp.com/getSoilNet', requestOptions)
+          .then(response => response.json())
+          .then(res=>{
+            if  (res.result === 'Invalid Image'){
+              props.setSoilModalVisible(false);
+              props.setModalVisible(false)
+              setDetecting(false)
+              alert(`This Image is not of a soil`)              
+            }else{
+              return fetch('https://pytorch-annual.herokuapp.com/getSoil', requestOptions)
+            }
+          })        
           .then(response => response.json())
           .then(res=>{
               if  (res.result === 'Invalid Image'){
@@ -160,14 +170,21 @@ const SoilModalComponent = props => {
                 props.setModalVisible(false)
                 setDetecting(false)
                 alert(`This Image is not of a soil`)
-                return {}
+                
               }else{
                 props.setSoilModalVisible(false);
                 props.setModalVisible(false)
                 setDetecting(false)
                 props.navigation.navigate('CropDetailScreenViaImage',
                 {uri:image.uri,weatherData:props.data,soilType:`${res.result} Soil`})
-              }})            
+                return {}
+              }})
+            .catch(err => {
+              console.log('error',err)
+              props.setSoilModalVisible(false);
+              props.setModalVisible(false)
+              setDetecting(false)
+            })            
           }catch(err){
           console.log('error',err)
           props.setSoilModalVisible(false);
@@ -177,56 +194,56 @@ const SoilModalComponent = props => {
         }
 
       })
-return      <Modal
-            onBackdropPress={()=>{
-              props.setSoilModalVisible(false);
-              props.setSoilModalVisible(false);
-              props.setModalVisible(false)
-              setDetecting(false)}}
-            style={{justifyContent:'center',alignItems:'center'}}
-            isVisible={props.soilModalVisible}
-            hasBackdrop={true}
-            style={{alignItems:'center'}}
-            backdropColor={'#292828'}
-            animationOut={'zoomOut'}
-            animationOutTiming={600}
-            animationInTiming={400}
-            animationIn='zoomIn'
-            backdropOpacity={0.5}  
-                >
-            {!detecting?<View style={{
-                width:width*0.75,
-                height:height*0.18,
-                justifyContent:'center',
-                alignItems:'center',
-                backgroundColor:'white',
-                borderRadius:15,}}>
-                <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.75,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'#DBD7D7',
-                justifyContent:'center',alignItems:'center'}}>
-                    <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Launch Camera</Text>
-                </Pressable>
-                <Pressable onPress={()=>{chooseFile('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.75,height:height*0.25*0.35,
-                justifyContent:'center',alignItems:'center'}}>
-                    <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Upload from Gallery</Text>
-                </Pressable>
-                </View>:<View style={{
-                        width:width*0.75,
-                        height:height*0.20,
-                        backgroundColor:'white',
-                        borderRadius:15,
-                        justifyContent:'center',
-                        alignItems:'center'}}>
+      return      <Modal
+                  onBackdropPress={()=>{
+                    props.setSoilModalVisible(false);
+                    props.setSoilModalVisible(false);
+                    props.setModalVisible(false)
+                    setDetecting(false)}}
+                  style={{justifyContent:'center',alignItems:'center'}}
+                  isVisible={props.soilModalVisible}
+                  hasBackdrop={true}
+                  style={{alignItems:'center'}}
+                  backdropColor={'#292828'}
+                  animationOut={'zoomOut'}
+                  animationOutTiming={600}
+                  animationInTiming={400}
+                  animationIn='zoomIn'
+                  backdropOpacity={0.5}  
+                      >
+                  {!detecting?<View style={{
+                      width:width*0.75,
+                      height:height*0.18,
+                      justifyContent:'center',
+                      alignItems:'center',
+                      backgroundColor:'white',
+                      borderRadius:15,}}>
+                      <Pressable onPress={()=>{captureImage('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.75,height:height*0.25*0.35,borderBottomWidth:0.5,borderBottomColor:'#DBD7D7',
+                      justifyContent:'center',alignItems:'center'}}>
+                          <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Launch Camera</Text>
+                      </Pressable>
+                      <Pressable onPress={()=>{chooseFile('photo')}} android_ripple={{color:'grey'}} style={{width:width*0.75,height:height*0.25*0.35,
+                      justifyContent:'center',alignItems:'center'}}>
+                          <Text style={{fontFamily:'Sora-Regular',fontSize:15,color:'#008AF5'}}>Upload from Gallery</Text>
+                      </Pressable>
+                      </View>:<View style={{
+                              width:width*0.75,
+                              height:height*0.20,
+                              backgroundColor:'white',
+                              borderRadius:15,
+                              justifyContent:'center',
+                              alignItems:'center'}}>
 
-                        <RippleLoader  
-                        strokeWidth={4} 
-                        size={Dimensions.get('screen').width*.13} color={'#8CC63E'} />
+                              <RippleLoader  
+                              strokeWidth={4} 
+                              size={Dimensions.get('screen').width*.13} color={'#8CC63E'} />
 
-                        <Text style={{marginTop:15,fontFamily:'Sora-Regular',color:'#3C3A3A'}}>
-                            Detecting Soil, please wait ...
-                        </Text>
-                        
-                    </View>}
-        </Modal>
+                              <Text style={{marginTop:15,fontFamily:'Sora-Regular',color:'#3C3A3A'}}>
+                                  Detecting Soil, please wait ...
+                              </Text>
+                              
+                          </View>}
+              </Modal>
 }
 
 export default React.memo(SoilModalComponent)

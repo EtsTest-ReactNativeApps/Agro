@@ -29,7 +29,7 @@ const FertilizerRecommmender = props => {
         //     name={item.replace(/-/g,'')}
         //      />
         {   const obj = JSON.parse(item.replace(/'/g, '"'))
-            console.log(obj)
+            console.log('O',obj)
             return <FertilizerComponent
             url={obj.shop} 
             price={obj.price}
