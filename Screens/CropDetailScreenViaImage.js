@@ -197,13 +197,13 @@ const CropDetailScreenViaImage = props =>{
                             paddingHorizontal:20,
                             justifyContent:'space-between',
                             alignItems:'center' }}>
-                                <View style={{width:'60%'}}>
+                                <View style={{width:'70%'}}>
                                     <Text style={{
                                         fontFamily:'Sora-Bold',
                                         fontWeight:'bold',
-                                        fontSize:16,
+                                        fontSize:14,
                                         letterSpacing:1.2,
-                                        lineHeight:25,
+                                        lineHeight:20,
                                         color:'#464242'}}>
                                         Find Crops that grows
                                         best in your surrounding
@@ -252,7 +252,7 @@ const CropDetailScreenViaImage = props =>{
                                     <Text style={{
                                         fontFamily:'Sora-Bold',
                                         fontWeight:'bold',
-                                        fontSize:16,
+                                        fontSize:14,
                                         letterSpacing:1.2,
                                         lineHeight:25,
                                         color:'#464242'}}>
