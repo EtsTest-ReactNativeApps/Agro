@@ -10,7 +10,7 @@ import {
 import Colors from "../constants/Colors";
 
 const Background = ({ children }) => (
-  <ScrollView contentContainerStyle={{flexGrow:1}} style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height,backgroundColor:'white'}}>
+  <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{flexGrow:1}} style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height,backgroundColor:'white'}}>
     <ImageBackground
      resizeMode='cover'
       style={styles.background}

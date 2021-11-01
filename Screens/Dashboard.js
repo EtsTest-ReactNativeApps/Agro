@@ -21,7 +21,7 @@ const Dashboard = props => {
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
     return (<SafeAreaView  style={{flex:1}}>
-              <ScrollView style={{width:width,height:height,backgroundColor:'#8CC63E'}} contentContainerStyle={{flexGrow:1}}>
+              <ScrollView showsVerticalScrollIndicator={false} style={{width:width,height:height,backgroundColor:'#8CC63E'}} contentContainerStyle={{flexGrow:1}}>
                 <View style={{width:width,height:width*0.78*(293/414),alignItems:'center'}}>
                   <ImageBackground style={{width:'100%',height:'100%',alignItems:'center',justifyContent:'space-between'}} source={require('../constants/backg.png')}>
                     <View style={{width:width,height:height*0.08,padding:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
@@ -34,7 +34,7 @@ const Dashboard = props => {
 
                     </View>
                     <View style={{width:width*0.85,padding:15,justifyContent:'center',flexDirection:'row',alignItems:'center',height:height*0.23,zIndex:0,marginTop:height*0.06,borderRadius:25,backgroundColor:'white',
-                  shadowOffset:{width:0,height:3},shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                  shadowOffset:{width:0,height:3},shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                     <Pressable 
                     onPress={()=>{
                       // props.navigation.navigate('CropRecommender')
@@ -107,7 +107,7 @@ const Dashboard = props => {
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'wheat',data:data})}
                         style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/wheat.png')} />
                             </View>
@@ -117,7 +117,7 @@ const Dashboard = props => {
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'rice',data:data})}
                           style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/rice.png')} />
                             </View>
@@ -127,7 +127,7 @@ const Dashboard = props => {
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'corn',data:data})}
                           style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/corn.png')} />
                             </View>
@@ -141,7 +141,7 @@ const Dashboard = props => {
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'leaf',data:data})}
                         style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/leaf.png')} />
                             </View>
@@ -151,7 +151,7 @@ const Dashboard = props => {
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'okra',data:data})}
                           style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/okra.png')} />
                             </View>
@@ -161,7 +161,7 @@ const Dashboard = props => {
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'cotton',data:data})}
                           style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/cotton.png')} />
                             </View>
@@ -177,7 +177,7 @@ const Dashboard = props => {
                         onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'fruit',data:data})}
                         style={{width:'100%',height:width*0.2*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
-                        shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
+                        shadowColor:'black',elevation:2,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
                               <Image style={{width:'100%',height:'100%'}} source={require('../constants/fruit.png')} />
                             </View>

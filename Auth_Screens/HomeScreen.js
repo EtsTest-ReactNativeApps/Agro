@@ -11,7 +11,7 @@ const HomeScreen = ({ navigation }) => (
   <Background>
     <View style={{width:'100%',height:'100%',justifyContent:'space-evenly'}}>
       <View>
-    <View style={{marginTop:Dimensions.get('screen').height*0.05,width:Dimensions.get('screen').width*0.7,alignItems:'center'}}>
+    <View style={{marginTop:Dimensions.get('screen').height*0.05,width:Dimensions.get('screen').width*0.7,alignSelf:'center',alignItems:'center'}}>
       <Logo />
     </View>
     <Text style={{fontFamily:'KaushanScript-Regular',textAlign:'center',letterSpacing:1.2,marginVertical:15,fontSize:35,color:'#85C475'}}>Kronia</Text>
