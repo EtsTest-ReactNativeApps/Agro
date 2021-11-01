@@ -37,7 +37,7 @@ const FertilizerRecommmender = props => {
             name={obj.fertilizer.replace(/-/g,'')} />}
              ,[])
     return <SafeAreaView style={{flex:1}}>        
-            <ScrollView style={{width:width,height:height}} contentContainerStyle={{backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
+            <ScrollView style={{width:width,height:height}} contentContainerStyle={{backgroundColor:'#F8F8F8',alignItems:'center',flexGrow:1,padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
                     <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
                         justifyContent:'center',

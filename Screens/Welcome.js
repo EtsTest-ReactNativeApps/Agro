@@ -10,7 +10,7 @@ import { NavigationEvents } from 'react-navigation';
 const Welcome = ({ navigation }) => {
 
     const [ activeState, setActiveState ] = useState({
-        title: "Agro App",
+        title: "Kronia App",
         description: "Exclusively for Agriculture and Farming",
         id: 1,
         src: require('../constants/slider1.png')
@@ -73,7 +73,7 @@ const Welcome = ({ navigation }) => {
     const stages = {
         1:{
             id: 1,
-            title: "Agro App",
+            title: "Kronia App",
             description: "Exclusively for Agriculture and Farming",
             src: require('../constants/slider1.png')
         },

@@ -108,7 +108,7 @@ const WeatherModal = props => {
           })
         console.log('here2')
         console.log(permission)
-        // return fetchData([27.00,80.011])
+        return fetchData([27.00,80.011])
         location = await RNLocation.getLatestLocation({timeout: 30000})
         console.log(location, location.longitude, location.latitude, 
            location.timestamp)

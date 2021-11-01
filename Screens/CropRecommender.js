@@ -28,7 +28,7 @@ const CropRecommender = props => {
              />,[])
     return <SafeAreaView style={{flex:1}}>
             <View style={{alignItems:'center',width:width,justifyContent:'flex-start'}}>        
-            <FlatList style={{width:width*.95,height:height*0.9,backgroundColor:'#F8F8F8'}} 
+            <FlatList contentContainerStyle={{flexGrow:1}} style={{width:width*.95,height:height*0.9,backgroundColor:'#F8F8F8'}} 
                 ListHeaderComponent={
                 <View>
                     <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>

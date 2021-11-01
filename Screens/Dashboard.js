@@ -21,7 +21,7 @@ const Dashboard = props => {
     const width=Dimensions.get('screen').width
     const height = Dimensions.get('screen').height       
     return (<SafeAreaView  style={{flex:1}}>
-              <ScrollView style={{width:width,height:height*1.2,backgroundColor:'#8CC63E'}}>
+              <ScrollView style={{width:width,height:height,backgroundColor:'#8CC63E'}} contentContainerStyle={{flexGrow:1}}>
                 <View style={{width:width,height:width*0.78*(293/414),alignItems:'center'}}>
                   <ImageBackground style={{width:'100%',height:'100%',alignItems:'center',justifyContent:'space-between'}} source={require('../constants/backg.png')}>
                     <View style={{width:width,height:height*0.08,padding:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
@@ -92,13 +92,13 @@ const Dashboard = props => {
                 <View style={{
                   width:width,
                   zIndex:0,
-                  height:height*.75,
+                  height:height*.84,
                   backgroundColor:'#FCFCFC',
                   paddingHorizontal:15,
                   borderTopLeftRadius:25,
                   borderTopRightRadius:25}}>
                     <View style={{marginTop:height*0.11}}>
-                      <Text style={{fontFamily:'Sora-SemiBold',marginBottom:25,marginTop:10,textAlign:'left',fontSize:18,color:'#544F4F'}}>
+                      <Text style={{fontFamily:'Sora-SemiBold',marginBottom:25,marginTop:10,textAlign:'left',fontSize:16,color:'#544F4F'}}>
                         Detect Disease
                       </Text>
                       <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#615E5E'}}>Plants</Text>
@@ -148,14 +148,14 @@ const Dashboard = props => {
                             <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Leafes</Text>
                           </Pressable>
                           <Pressable 
-                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'fruit',data:data})}
+                          onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'okra',data:data})}
                           style={{width:width*0.28,height:width*0.25*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
-                              <Image style={{width:'100%',height:'100%'}} source={require('../constants/fruit.png')} />
+                              <Image style={{width:'100%',height:'100%'}} source={require('../constants/okra.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Fruits</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:12,color:'#635F5F'}}>Okra Leaves</Text>
                           </Pressable>
                           <Pressable 
                           onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'cotton',data:data})}
@@ -169,19 +169,22 @@ const Dashboard = props => {
                           </Pressable>
                           
                       </View>
-                      <View style={{width:'100%',marginTop:15}}>
+                      
+                          <Text style={{fontFamily:'Sora-SemiBold',marginBottom:15,marginTop:25,textAlign:'left',fontSize:16,color:'#544F4F'}}>
+                          Detect Fruits
+                        </Text>
                         <Pressable 
-                        onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'okra',data:data})}
+                        onPress={()=>props.navigation.navigate('PreDetectScreen',{name:'fruit',data:data})}
                         style={{width:'100%',height:width*0.2*(135/110),shadowOffset:{width:0,height:3},
                         backgroundColor:'white',borderRadius:15,justifyContent:'space-around',alignItems:'center',
                         shadowColor:'black',elevation:4,shadowOpacity:0.38}}>
                           <View style={{width:width*0.14,height:width*0.14}}>
-                              <Image style={{width:'100%',height:'100%'}} source={require('../constants/okra.png')} />
+                              <Image style={{width:'100%',height:'100%'}} source={require('../constants/fruit.png')} />
                             </View>
-                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Okra Leafes</Text>
+                            <Text style={{fontFamily:'Sora-Regular',fontSize:14,color:'#635F5F'}}>Fruits</Text>
                           </Pressable>
-                          </View>
-                    </View>                  
+                    </View>   
+                                   
                 </View>
               </ScrollView>
 

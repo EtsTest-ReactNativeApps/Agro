@@ -43,7 +43,8 @@ const PreDetectScreen = props => {
                            borderRadius:15,
                            marginTop:25,
                            elevation:1,
-                           padding:10,
+                           paddingHorizontal:10,
+                           paddingVertical:5,
                            backgroundColor:'white',
                            justifyContent:'center',
                            alignItems:'flex-start',
@@ -51,8 +52,8 @@ const PreDetectScreen = props => {
                            shadowOffset:{width:0,height:4},
                            shadowOpacity:0.4,
                            shadowRadius:4}}>
-                               <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
-                                 {name} disease detection
+                               <Text style={{fontFamily:'Sora-Regular',fontSize:13,color:'#3C3A3A'}}>
+                                 Disease detection
                                 </Text>
                         </View>                        
                     </View>

@@ -53,7 +53,7 @@ const LoginScreen = ({ navigation }) => {
         borderBottomRightRadius:15}}>
       {/* <Image source={require('../Auth_assets/logo.png')} style={styles.image} /> */}
       </View>
-
+      <Text style={{fontFamily:'KaushanScript-Regular',letterSpacing:1.2,marginVertical:15,fontSize:35,color:'#85C475'}}>Kronia</Text>
       <Header>Welcome back.</Header>
 
       <TextInput
