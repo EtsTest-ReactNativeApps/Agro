@@ -20,7 +20,7 @@ const DetailScreen = props =>{
     const detect=props.navigation.getParam('detect')
     const [pressed,setPressed]=useState(false)
     return <SafeAreaView style={{flex:1}}>        
-            <View style={{width:width,height:height,backgroundColor:'#F8F8F8',alignItems:'center',padding:12,justifyContent:'flex-start'}}>
+            <ScrollView style={{width:width,height:height,backgroundColor:'#F8F8F8'}} contentContainerStyle={{alignItems:'center',padding:12,justifyContent:'flex-start'}}>
                 <View style={{width:'100%',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',marginTop:height*0.02}}>
                     <Pressable onPress={()=>props.navigation.goBack()} style={{width:width*0.1,
                         justifyContent:'center',
@@ -89,13 +89,55 @@ const DetailScreen = props =>{
                         </View>                        
                     </View>                      
                 </View>
-                <ScrollView style={{height:height*0.4,width:'100%'}} showsVerticalScrollIndicator={false}>
+                <View style={{height:height*0.4,width:'100%'}} >
                     <Text style={{letterSpacing:1,lineHeight:25,fontSize:15,color:'#898989',
                     fontFamily:'Sora-Regular'}}>
                         {diseases[detect.toLowerCase().replace(/ /g,'_').replace(/,/g,'').replace(/[()]/g,'')]}
                     </Text>
-                </ScrollView>
-              </View>    
+                </View>
+                <Text style={{fontFamily:'Sora-Regular',textAlign:'left',marginVertical:10,fontSize:13,color:'#3C3A3A'}}>
+                    Symptoms
+                </Text>
+                <View style={{width:'100%'}}>
+            <View style={{width:'100%',flexDirection:'row',justifyContent:'space-between',marginTop:5}}>
+                <View style={{width:height*0.1*0.2,height:height*0.1*0.2}}>
+                    <Image source={require('../constants/check.png')} style={{width:'100%',height:'100%'}} />
+                </View>
+                <View style={{width:width*0.8,flexDirection:'column',justifyContent:'flex-start'}}>
+                    <View>
+                        <Text style={{
+                            fontFamily:'Sora-Regular',
+                            letterSpacing:1.2,
+                            fontSize:12,
+                            lineHeight:16,
+                            fontWeight:'500',
+                            color:'#898989',
+                            }}> Lesions may form in bands across leaves as a result of an infection in the whorl. 
+                            </Text>
+                    </View>
+                </View>
+            </View>
+            <View style={{width:width*0.9,height:0.2,alignSelf:'center',marginVertical:15,backgroundColor:'#C9C7C7'}} />
+            <View style={{width:'100%',justifyContent:'space-between',flexDirection:'row',marginBottom:15}}>
+            <View style={{width:height*0.1*0.2,height:height*0.1*0.2}}>
+                <Image source={require('../constants/check.png')} style={{width:'100%',height:'100%'}} />
+            </View>
+            <View style={{width:width*0.8,height:'100%',flexDirection:'column',justifyContent:'flex-start'}}>
+                <View>
+                    <Text style={{
+                        fontFamily:'Sora-Regular',
+                        letterSpacing:1.2,
+                        fontSize:12,
+                        lineHeight:16,
+                        fontWeight:'500',
+                        color:'#898989',
+                        textDecorationStyle:'solid'}}> Lesions may form in bands across leaves as a result of an infection in the whorl. 
+                        </Text>
+                </View>
+            </View>
+        </View>
+        </View>
+              </ScrollView>    
             </SafeAreaView>
 }
 

@@ -76,7 +76,7 @@ const FertilizerRecommmender = props => {
                     </Text>
                 </View>
                 {/* <FilterComponent  nameMain={completeData[0]} name={completeData[0].replace(/-/g,'_')} /> */}
-                <FertilizerComponent nameMain={completeData[0].fertilizer} url={completeData[0].shop} price={completeData[0].price} name={completeData[0].fertilizer.replace(/-/g,'_')} />
+                <FertilizerComponent nameMain={completeData[0].fertilizer} url={completeData[0].shop} price={completeData[0].price} name={completeData[0].fertilizer.replace(/-/g,'')} />
                 <View style={{alignItems:'flex-start',width:width*.95,marginVertical:20}}>
                     <Text style={{fontFamily:'Sora-Regular',fontSize:16,color:'#3C3A3A'}}>
                         Similar Fertlizer
