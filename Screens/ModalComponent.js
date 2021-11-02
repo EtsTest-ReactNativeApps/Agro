@@ -16,7 +16,7 @@ const ModalComponent = props => {
     props.name === 'wheat' ? 'https://pytorch-annual.herokuapp.com/getWheatDisease' : 
     props.name === 'corn' ?'https://pytorch-annual3.herokuapp.com/getCorn' : 
     props.name === 'leaf' ? 'https://pytorch-annual.herokuapp.com/getLeafDisease' :
-    props.name === 'fruit' ? 'https://pytorch-annual.herokuapp.com/getFruit' : 
+    props.name === 'fruit' ? 'https://pytorch-annual.herokuapp.com/getFruitRecommender' : 
     props.name === 'cotton' ? 'https://pytorch-annual.herokuapp.com/getCotton' : 
     props.name === 'okra' ? 'https://pytorch-annual.herokuapp.com/getYellow' : null    
 
