@@ -52,12 +52,13 @@ const BottomDetailScreen = props => {
         </View>:<View />)
     const fetchVideo = useCallback(()=>{
         setLoading(true)
+        console.log('URL ',`how+${props.detect.replace(/_/g,'+').replace(/[0-9]/g, "")}+grows`)
         try{
             var requestOptions = {
                 method: 'GET',
                 redirect: 'follow'
               };              
-              fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=how+${props.detect.replace(/_/g,'+')}+growsdetails&type=video&key=AIzaSyCLWne9ZrJnMs2kkYwS9Aj6bCm2g8v1CzY`, requestOptions)
+              fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=how+${props.detect.replace(/_/g,'+').replace(/[0-9]/g, "")}+grows&type=video&key=AIzaSyCLWne9ZrJnMs2kkYwS9Aj6bCm2g8v1CzY`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     console.log(result)
