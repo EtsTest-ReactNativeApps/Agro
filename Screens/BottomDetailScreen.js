@@ -57,12 +57,19 @@ const BottomDetailScreen = props => {
                 method: 'GET',
                 redirect: 'follow'
               };              
-              fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${props.detect}&type=video&key=AIzaSyCLWne9ZrJnMs2kkYwS9Aj6bCm2g8v1CzY`, requestOptions)
+              fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=how+${props.detect.replace(/_/g,'+')}+growsdetails&type=video&key=AIzaSyCLWne9ZrJnMs2kkYwS9Aj6bCm2g8v1CzY`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result.items[0].id.videoId);
-                    setVideoId(result.items[0].id.videoId)
-                    setLoading(false)
+                    console.log(result)
+                    if (result.pageInfo.totalResults >0){
+                        console.log(result.items[0].id.videoId);
+                        setVideoId(result.items[0].id.videoId)
+                        setLoading(false)
+                    }else{
+                        setLoading(false)
+                        ToastAndroid.show("Can't able to fetch",ToastAndroid.LONG)
+                    }
+                    
                 })
                 .catch(error => console.log('error', error));
         }catch(err){
@@ -79,18 +86,23 @@ const BottomDetailScreen = props => {
                     Fetching content...
                 </Text>
                 </View>:
-            <View style={{width:'100%',height:height*0.35,borderRadius:15,overflow:'hidden'}}>
-                <WebView
-                style={{width:'100%',height:'100%',borderRadius:15,overflow:'hidden'}}
-                scrollEnabled={false}
-                //                userAgent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36
-                // (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
-                source={{uri: `https://www.youtube.com/embed/${videoId}`}}
-                allowsFullscreenVideo={true}
-                mediaPlaybackRequiresUserAction={false}
-                javaScriptEnabled={true}
-                domStorageEnabled={true}
-            />
+            <View style={{width:'100%',height:height*0.35}}>
+                <Text style={{fontFamily:'Sora-Regular',alignSelf:'flex-start',marginVertical:10,fontSize:14,color:'#3C3A3A'}}>
+                    Know how it grows
+                </Text>
+                <View style={{width:'100%',height:height*0.32,backgroundColor:'#7D7E7D',borderRadius:10,overflow:'hidden'}}>
+                    <WebView
+                    style={{width:'100%',height:'100%'}}
+                    scrollEnabled={false}
+                    //                userAgent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36
+                    // (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
+                    source={{uri: `https://www.youtube.com/embed/${videoId}`}}
+                    allowsFullscreenVideo={true}
+                    mediaPlaybackRequiresUserAction={false}
+                    javaScriptEnabled={true}
+                    domStorageEnabled={true}
+                    />
+                </View>
             </View>}
             <NavigationEvents onWillFocus={fetchVideo} />
         </View>:<View style={{width:width*.94}}>

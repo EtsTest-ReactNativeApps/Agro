@@ -31,6 +31,7 @@ const BottomHeaderDetail = props => {
     flexDirection:'row',justifyContent:'space-between'}}>
       <View style={{
                width:height*0.1,
+               marginRight:'3%',
                height:height*0.1,
                borderRadius:height*0.1,
                elevation:3,
@@ -57,20 +58,19 @@ const BottomHeaderDetail = props => {
        <View style={{height:'100%', marginRight:10}}>
            <View style={{
                height:height*0.056,
-               borderRadius:15,
-              
+               borderRadius:15,              
                marginTop:25,
                elevation:1,
                paddingHorizontal:15,
-               backgroundColor:props.detect.toLowerCase().includes('ealthy')?'#C7F0AF':'#E89F9F',
+               backgroundColor:props.detect.toLowerCase().includes('ealthy') || props.name === 'fruit'?'#C7F0AF':'#E89F9F',
                justifyContent:'center',
                alignItems:'center',
                shadowColor:'black',
                shadowOffset:{width:0,height:4},
                shadowOpacity:0.4,
                shadowRadius:4}}>
-                   <Text style={{fontFamily:'Sora-Regular',letterSpacing:1.3,fontSize:16,
-                   color:props.detect.toLowerCase().includes('ealthy')?'#2A8B31':'#B00000'}}>
+                   <Text style={{fontFamily:'Sora-Regular',letterSpacing:1.3,fontSize:13,
+                   color:props.detect.toLowerCase().includes('ealthy')||props.name ==='fruit'?'#2A8B31':'#B00000'}}>
                      {props.detect.replace(/[()]/g,'').replace(/_/g,' ').replace(/,/g,'')} detection
                     </Text>
             </View>                        
