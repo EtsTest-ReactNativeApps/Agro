@@ -57,10 +57,11 @@ const BottomHeaderDetail = props => {
         </View>     
        <View style={{height:'100%', marginRight:10}}>
            <View style={{
-               height:height*0.056,
-               borderRadius:15,              
+               borderRadius:15,  
+               width:width*0.6,            
                marginTop:25,
                elevation:1,
+               paddingVertical:15,
                paddingHorizontal:15,
                backgroundColor:props.detect.toLowerCase().includes('ealthy') || props.name === 'fruit'?'#C7F0AF':'#E89F9F',
                justifyContent:'center',
@@ -69,7 +70,7 @@ const BottomHeaderDetail = props => {
                shadowOffset:{width:0,height:4},
                shadowOpacity:0.4,
                shadowRadius:4}}>
-                   <Text style={{fontFamily:'Sora-Regular',letterSpacing:1.3,fontSize:13,
+                   <Text numberOfLines={5} style={{fontFamily:'Sora-Regular',letterSpacing:1.3,fontSize:13,
                    color:props.detect.toLowerCase().includes('ealthy')||props.name ==='fruit'?'#2A8B31':'#B00000'}}>
                      {props.detect.replace(/[()]/g,'').replace(/_/g,' ').replace(/,/g,'')} detection
                     </Text>

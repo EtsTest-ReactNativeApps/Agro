@@ -34,7 +34,7 @@ export default  diseases = {
         symptoms:'The Leaf seems healthy.',
         treatment:'Relax no serious disease was found.'
     },
-    apple_apple_scrab:{
+    apple_apple_scab:{
         details:'Apple scab is caused by the fungus Venturia inaequalis.It infects crabapples and apples (Malus spp.), mountain ash (Sorbus spp.), pear (Pyrus communis) and Cotoneaster (Cotoneaster spp.).The apple scab fungus has several host-specific strains that can cause disease on one type of plant but not any other.For example, the strain of V.inaequalis that infects mountain ash will only infect other mountain ash trees and will not infect crabapple trees.',
         symptoms:'Olive-green to black velvety spots with indistinct margins on leaves.Severe cases can lead to yellowing of the leaves and early defoliation.Olive-green to black lesions on the fruit turn brown and corky over time.,',
         treatment:'Remove and destroy the fallen leaf litter so that the fungus cannot overwinter.This may reduce the disease pressure in the following spring, but will not likely eliminate the disease.Do not overcrowd plants, and make sure the canopy has proper airflow.This will decrease the conditions favorable for disease development.Fungicide applications at 2-week intervals beginning when new growth is expanding in the spring.Crabapple cultivars that are resistant to apple scab are widely available.'
