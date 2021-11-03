@@ -1,6 +1,4 @@
-# Agro
-
-This is an example Android Application README to show briefly the sections your app README should contain.
+# Kronia
 
 ## Installation
 Clone this repository and import into **Android Studio**
@@ -16,7 +14,7 @@ Download the app: https://play.google.com/store/apps/details?id=org.bookdash.and
 
 Check out our Machine Learning and Backend implementation: https://github.com/KroniaPytorch/KroniaModels
 
-# Configuration 
+# React Native Configuration 
 https://reactnative.dev/docs/environment-setup
 
 
