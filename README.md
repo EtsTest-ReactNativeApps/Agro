@@ -26,6 +26,9 @@ https://reactnative.dev/docs/environment-setup
 <img src="Screenshots/Screenshot (14).png" alt="phone image" width="200px" />
 <img src="Screenshots/Screenshot (15).png" alt="phone image" width="400px" />
 
+# Screenshots
+<img src="Screenshots/Blank diagram (1).png" alt="phone image" width="200px" />
+
 
 # What does this app do?
 Kronia is an agritech android mobile application that works to automate the existing farming practices and agriculture methodologies, leveraging the potential of computer vision and AI built on top of Pytorch framework.
