@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation }) => (
     <View style={{marginTop:Dimensions.get('screen').height*0.05,width:Dimensions.get('screen').width*0.7,alignSelf:'center',alignItems:'center'}}>
       <Logo />
     </View>
-    <Text style={{fontFamily:'KaushanScript-Regular',textAlign:'center',letterSpacing:1.2,marginVertical:15,fontSize:35,color:'#85C475'}}>Kronia</Text>
+    {/* <Text style={{fontFamily:'KaushanScript-Regular',textAlign:'center',letterSpacing:1.2,marginVertical:15,fontSize:35,color:'#85C475'}}>Kronia</Text> */}
     {/* <Text style={{color:theme.colors.primary,fontSize:25,fontWeight:'bold'}} >Pampas Login</Text> */}
     <View style={{marginTop:Dimensions.get('screen').height*0.05,width:'100%'}}>
       <Button mode="contained" onPress={() => navigation.navigate("LoginScreen")}>
