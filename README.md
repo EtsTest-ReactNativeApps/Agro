@@ -26,7 +26,7 @@ https://reactnative.dev/docs/environment-setup
 <img src="Screenshots/Screenshot (14).png" alt="phone image" width="200px" />
 <img src="Screenshots/Screenshot (15).png" alt="phone image" width="400px" />
 
-# Screenshots
+# Client Side Architecture
 <img src="Screenshots/Blank diagram (1).png" alt="phone image" width="1080px" />
 
 
