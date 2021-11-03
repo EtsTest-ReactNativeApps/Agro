@@ -10,7 +10,7 @@ git clone https://github.com/thebigshotsam/Agro.git
 
 Check out the video of what is Kronia and how it works here: https://drive.google.com/file/d/1D2Hb0gD__yu_bjLrxsbiCLj2GT-6Nd4t/view?usp=sharing
 
-Download the app: https://play.google.com/store/apps/details?id=org.bookdash.android
+Download the app: https://drive.google.com/file/d/11g6SQpSv4O7lo9cWtr-7e8M1FVO3nx2y/view?usp=sharing
 
 Check out our Machine Learning and Backend implementation: https://github.com/KroniaPytorch/KroniaModels
 
