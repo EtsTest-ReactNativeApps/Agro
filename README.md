@@ -1,5 +1,7 @@
 # Kronia
 
+# Facebook PyTorch 2021 Winner
+
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
